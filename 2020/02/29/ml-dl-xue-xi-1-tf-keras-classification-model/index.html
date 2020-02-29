@@ -488,126 +488,126 @@ import matplot">
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="tf2-0官方文档"><a href="#tf2-0官方文档" class="headerlink" title="tf2.0官方文档"></a>tf2.0官方文档</h2><p><a href="https://tensorflow.google.cn/versions/r2.0/api_docs/python/tf" target="_blank" rel="noopener">https://tensorflow.google.cn/versions/r2.0/api_docs/python/tf</a></p>
-<h2 id="导入一些常用的头文件"><a href="#导入一些常用的头文件" class="headerlink" title="导入一些常用的头文件"></a>导入一些常用的头文件</h2><pre class=" language-py"><code class="language-py">import matplotlib as mpl
-import matplotlib.pyplot as plt
-%matplotlib inline
-import numpy as np
-import sklearn
-import pandas as pd
-import os
-import sys
-import time
-import tensorflow as tf
+<h2 id="导入一些常用的头文件"><a href="#导入一些常用的头文件" class="headerlink" title="导入一些常用的头文件"></a>导入一些常用的头文件</h2><pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> matplotlib <span class="token keyword">as</span> mpl
+<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
+<span class="token operator">%</span>matplotlib inline
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> sklearn
+<span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+<span class="token keyword">import</span> os
+<span class="token keyword">import</span> sys
+<span class="token keyword">import</span> time
+<span class="token keyword">import</span> tensorflow <span class="token keyword">as</span> tf
 
-from tensorflow import keras
+<span class="token keyword">from</span> tensorflow <span class="token keyword">import</span> keras
 
-print(tf.__version__)
-print(sys.version_info)
-for module in mpl, np, pd, sklearn, tf, keras:
-    print(module.__name__, module.__version__)</code></pre>
+<span class="token keyword">print</span><span class="token punctuation">(</span>tf<span class="token punctuation">.</span>__version__<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>sys<span class="token punctuation">.</span>version_info<span class="token punctuation">)</span>
+<span class="token keyword">for</span> module <span class="token keyword">in</span> mpl<span class="token punctuation">,</span> np<span class="token punctuation">,</span> pd<span class="token punctuation">,</span> sklearn<span class="token punctuation">,</span> tf<span class="token punctuation">,</span> keras<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>module<span class="token punctuation">.</span>__name__<span class="token punctuation">,</span> module<span class="token punctuation">.</span>__version__<span class="token punctuation">)</span></code></pre>
 <p><img src="https://img-blog.csdnimg.cn/20200228161501591.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="导入数据集"><a href="#导入数据集" class="headerlink" title="导入数据集"></a>导入数据集</h2><pre class=" language-py"><code class="language-py"># 从keras数据集 导入
-fashion_mnist = keras.datasets.fashion_mnist
-# 加载训练集和测试集
-(x_train_all, y_train_all), (x_test, y_test) = fashion_mnist.load_data()
-# 把训练集分为 验证集 和 训练集
-x_valid, x_train = x_train_all[:5000], x_train_all[5000:]
-y_valid, y_train = y_train_all[:5000], y_train_all[5000:]
-# 打印这些shape 都是numpy的格式
-print(x_valid.shape, y_valid.shape)
-print(x_train.shape, y_train.shape)
-print(x_test.shape, y_test.shape)</code></pre>
+<h2 id="导入数据集"><a href="#导入数据集" class="headerlink" title="导入数据集"></a>导入数据集</h2><pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 从keras数据集 导入</span>
+fashion_mnist <span class="token operator">=</span> keras<span class="token punctuation">.</span>datasets<span class="token punctuation">.</span>fashion_mnist
+<span class="token comment" spellcheck="true"># 加载训练集和测试集</span>
+<span class="token punctuation">(</span>x_train_all<span class="token punctuation">,</span> y_train_all<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>x_test<span class="token punctuation">,</span> y_test<span class="token punctuation">)</span> <span class="token operator">=</span> fashion_mnist<span class="token punctuation">.</span>load_data<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 把训练集分为 验证集 和 训练集</span>
+x_valid<span class="token punctuation">,</span> x_train <span class="token operator">=</span> x_train_all<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">5000</span><span class="token punctuation">]</span><span class="token punctuation">,</span> x_train_all<span class="token punctuation">[</span><span class="token number">5000</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
+y_valid<span class="token punctuation">,</span> y_train <span class="token operator">=</span> y_train_all<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">5000</span><span class="token punctuation">]</span><span class="token punctuation">,</span> y_train_all<span class="token punctuation">[</span><span class="token number">5000</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># 打印这些shape 都是numpy的格式</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>x_valid<span class="token punctuation">.</span>shape<span class="token punctuation">,</span> y_valid<span class="token punctuation">.</span>shape<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>x_train<span class="token punctuation">.</span>shape<span class="token punctuation">,</span> y_train<span class="token punctuation">.</span>shape<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>x_test<span class="token punctuation">.</span>shape<span class="token punctuation">,</span> y_test<span class="token punctuation">.</span>shape<span class="token punctuation">)</span></code></pre>
 <p><img src="https://img-blog.csdnimg.cn/2020022816044852.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="显示一张图片"><a href="#显示一张图片" class="headerlink" title="显示一张图片"></a>显示一张图片</h2><pre class=" language-py"><code class="language-py">def show_single_image(img_arr):
-    # cmap参数 二值显示 显示黑白
-    plt.imshow(img_arr, cmap = "binary")
-    plt.show()
-# 调用函数 显示第一张图片  
-show_single_image(x_train[0])</code></pre>
+<h2 id="显示一张图片"><a href="#显示一张图片" class="headerlink" title="显示一张图片"></a>显示一张图片</h2><pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">show_single_image</span><span class="token punctuation">(</span>img_arr<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment" spellcheck="true"># cmap参数 二值显示 显示黑白</span>
+    plt<span class="token punctuation">.</span>imshow<span class="token punctuation">(</span>img_arr<span class="token punctuation">,</span> cmap <span class="token operator">=</span> <span class="token string">"binary"</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 调用函数 显示第一张图片  </span>
+show_single_image<span class="token punctuation">(</span>x_train<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre>
 <p><img src="https://img-blog.csdnimg.cn/20200228161650630.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="显示多张图片"><a href="#显示多张图片" class="headerlink" title="显示多张图片"></a>显示多张图片</h2><pre class=" language-py"><code class="language-py"># 定义n行n列 可以显示n行n列 附加y_data的话可以显示分类的类别
-# class_names 是一个类别的数组
-def show_imgs(n_rows, n_cols, x_data, y_data, class_names):
-    # 验证长度 和大小
-    assert len(x_data) == len(y_data)
-    # 行和列 乘积不能大于 样本数
-    assert n_rows * n_cols < len(x_data)
-    # 定义一张大图
-    plt.figure(figsize = (n_cols * 1.4, n_rows * 1.6))
-    for row in range(n_rows):
-        for col in range(n_cols):
-            # 计算图片索引
-            index = n_cols * row + col 
-            # 画一张子图 index从0开始 +1 为subplot索引
-            plt.subplot(n_rows, n_cols, index+1)
-            plt.imshow(x_data[index], cmap="binary",
-                       interpolation = 'nearest')
-            # 关掉坐标系
-            plt.axis('off')
-            # 子图片的分类名字
-            plt.title(class_names[y_data[index]])
-    plt.show()
-# 分类的名称
-class_names = ['T-shirt', 'Trouser', 'Pullover', 'Dress',
-               'Coat', 'Sandal', 'Shirt', 'Sneaker',
-               'Bag', 'Ankle boot']
-# 显示3行5列的十五张图片          
-show_imgs(3, 5, x_train, y_train, class_names)</code></pre>
+<h2 id="显示多张图片"><a href="#显示多张图片" class="headerlink" title="显示多张图片"></a>显示多张图片</h2><pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 定义n行n列 可以显示n行n列 附加y_data的话可以显示分类的类别</span>
+<span class="token comment" spellcheck="true"># class_names 是一个类别的数组</span>
+<span class="token keyword">def</span> <span class="token function">show_imgs</span><span class="token punctuation">(</span>n_rows<span class="token punctuation">,</span> n_cols<span class="token punctuation">,</span> x_data<span class="token punctuation">,</span> y_data<span class="token punctuation">,</span> class_names<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment" spellcheck="true"># 验证长度 和大小</span>
+    <span class="token keyword">assert</span> len<span class="token punctuation">(</span>x_data<span class="token punctuation">)</span> <span class="token operator">==</span> len<span class="token punctuation">(</span>y_data<span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># 行和列 乘积不能大于 样本数</span>
+    <span class="token keyword">assert</span> n_rows <span class="token operator">*</span> n_cols <span class="token operator">&lt;</span> len<span class="token punctuation">(</span>x_data<span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># 定义一张大图</span>
+    plt<span class="token punctuation">.</span>figure<span class="token punctuation">(</span>figsize <span class="token operator">=</span> <span class="token punctuation">(</span>n_cols <span class="token operator">*</span> <span class="token number">1.4</span><span class="token punctuation">,</span> n_rows <span class="token operator">*</span> <span class="token number">1.6</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> row <span class="token keyword">in</span> range<span class="token punctuation">(</span>n_rows<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">for</span> col <span class="token keyword">in</span> range<span class="token punctuation">(</span>n_cols<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token comment" spellcheck="true"># 计算图片索引</span>
+            index <span class="token operator">=</span> n_cols <span class="token operator">*</span> row <span class="token operator">+</span> col 
+            <span class="token comment" spellcheck="true"># 画一张子图 index从0开始 +1 为subplot索引</span>
+            plt<span class="token punctuation">.</span>subplot<span class="token punctuation">(</span>n_rows<span class="token punctuation">,</span> n_cols<span class="token punctuation">,</span> index<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span>
+            plt<span class="token punctuation">.</span>imshow<span class="token punctuation">(</span>x_data<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">,</span> cmap<span class="token operator">=</span><span class="token string">"binary"</span><span class="token punctuation">,</span>
+                       interpolation <span class="token operator">=</span> <span class="token string">'nearest'</span><span class="token punctuation">)</span>
+            <span class="token comment" spellcheck="true"># 关掉坐标系</span>
+            plt<span class="token punctuation">.</span>axis<span class="token punctuation">(</span><span class="token string">'off'</span><span class="token punctuation">)</span>
+            <span class="token comment" spellcheck="true"># 子图片的分类名字</span>
+            plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span>class_names<span class="token punctuation">[</span>y_data<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 分类的名称</span>
+class_names <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'T-shirt'</span><span class="token punctuation">,</span> <span class="token string">'Trouser'</span><span class="token punctuation">,</span> <span class="token string">'Pullover'</span><span class="token punctuation">,</span> <span class="token string">'Dress'</span><span class="token punctuation">,</span>
+               <span class="token string">'Coat'</span><span class="token punctuation">,</span> <span class="token string">'Sandal'</span><span class="token punctuation">,</span> <span class="token string">'Shirt'</span><span class="token punctuation">,</span> <span class="token string">'Sneaker'</span><span class="token punctuation">,</span>
+               <span class="token string">'Bag'</span><span class="token punctuation">,</span> <span class="token string">'Ankle boot'</span><span class="token punctuation">]</span>
+<span class="token comment" spellcheck="true"># 显示3行5列的十五张图片          </span>
+show_imgs<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> x_train<span class="token punctuation">,</span> y_train<span class="token punctuation">,</span> class_names<span class="token punctuation">)</span></code></pre>
 <p><img src="https://img-blog.csdnimg.cn/20200228162140371.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <h2 id="实现tf-keras模型"><a href="#实现tf-keras模型" class="headerlink" title="实现tf.keras模型"></a>实现tf.keras模型</h2><p>有问题多看官方文档api！</p>
-<pre class=" language-py"><code class="language-py"># tf.keras.models.Sequential()
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># tf.keras.models.Sequential()</span>
 
-""" 初始化的一种方式
+<span class="token triple-quoted-string string">""" 初始化的一种方式
 model = keras.models.Sequential()
 model.add(keras.layers.Flatten(input_shape=[28, 28]))
 model.add(keras.layers.Dense(300, activation="relu"))
 model.add(keras.layers.Dense(100, activation="relu"))
 model.add(keras.layers.Dense(10, activation="softmax"))
-"""
-# 创建一个sequential对象 初始化的另一种方式
-model = keras.models.Sequential([
-    # 添加输入层 flatten将输入图片进行展开 拉直 成为一个28*28的一个列向量
-    keras.layers.Flatten(input_shape=[28, 28]),
-    # 添加全连接层 单元数300 激活函数relu 上一层与下一层所有单元都一一连接
-    keras.layers.Dense(300, activation='relu'),
-    # 单元数100 与上一层300个单元 去一一连接
-    keras.layers.Dense(100, activation='relu'),
-    # 输出层 输出是长度为10的一个向量
-    keras.layers.Dense(10, activation='softmax')
-])
+"""</span>
+<span class="token comment" spellcheck="true"># 创建一个sequential对象 初始化的另一种方式</span>
+model <span class="token operator">=</span> keras<span class="token punctuation">.</span>models<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span><span class="token punctuation">[</span>
+    <span class="token comment" spellcheck="true"># 添加输入层 flatten将输入图片进行展开 拉直 成为一个28*28的一个列向量</span>
+    keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Flatten<span class="token punctuation">(</span>input_shape<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">28</span><span class="token punctuation">,</span> <span class="token number">28</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token comment" spellcheck="true"># 添加全连接层 单元数300 激活函数relu 上一层与下一层所有单元都一一连接</span>
+    keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">300</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">'relu'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token comment" spellcheck="true"># 单元数100 与上一层300个单元 去一一连接</span>
+    keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">'relu'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token comment" spellcheck="true"># 输出层 输出是长度为10的一个向量</span>
+    keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">'softmax'</span><span class="token punctuation">)</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span>
 
-# relu: y = max(0, x) 即当x>0 输出为x 否则为0
-# softmax: 将向量变成概率分布. x = [x1, x2, x3], 
-#          y = [e^x1/sum, e^x2/sum, e^x3/sum], sum = e^x1 + e^x2 + e^x3
+<span class="token comment" spellcheck="true"># relu: y = max(0, x) 即当x>0 输出为x 否则为0</span>
+<span class="token comment" spellcheck="true"># softmax: 将向量变成概率分布. x = [x1, x2, x3], </span>
+<span class="token comment" spellcheck="true">#          y = [e^x1/sum, e^x2/sum, e^x3/sum], sum = e^x1 + e^x2 + e^x3</span>
 
-# reason for sparse: y->index. y->one_hot->[] 
-# y 是长度等于样本数目的一个向量 对于每一个样本来说只是一个值
-# 如果y 是一个向量则使用categorical_crossentropy 
-# 如果y 是一个数值使用sparse_categorical_crossentropy
-# 定义 损失函数（交叉熵） 优化方法（梯度下降） 关心的其他指标，评估方式（准确值）
-model.compile(loss="sparse_categorical_crossentropy",
-              optimizer = "sgd",
-              metrics = ["accuracy"])</code></pre>
-<h2 id="查看模型的层数"><a href="#查看模型的层数" class="headerlink" title="查看模型的层数"></a>查看模型的层数</h2><pre class=" language-py"><code class="language-py">model.layers</code></pre>
+<span class="token comment" spellcheck="true"># reason for sparse: y->index. y->one_hot->[] </span>
+<span class="token comment" spellcheck="true"># y 是长度等于样本数目的一个向量 对于每一个样本来说只是一个值</span>
+<span class="token comment" spellcheck="true"># 如果y 是一个向量则使用categorical_crossentropy </span>
+<span class="token comment" spellcheck="true"># 如果y 是一个数值使用sparse_categorical_crossentropy</span>
+<span class="token comment" spellcheck="true"># 定义 损失函数（交叉熵） 优化方法（梯度下降） 关心的其他指标，评估方式（准确值）</span>
+model<span class="token punctuation">.</span>compile<span class="token punctuation">(</span>loss<span class="token operator">=</span><span class="token string">"sparse_categorical_crossentropy"</span><span class="token punctuation">,</span>
+              optimizer <span class="token operator">=</span> <span class="token string">"sgd"</span><span class="token punctuation">,</span>
+              metrics <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"accuracy"</span><span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre>
+<h2 id="查看模型的层数"><a href="#查看模型的层数" class="headerlink" title="查看模型的层数"></a>查看模型的层数</h2><pre class=" language-python"><code class="language-python">model<span class="token punctuation">.</span>layers</code></pre>
 <p><img src="https://img-blog.csdnimg.cn/20200228165122904.png" alt="在这里插入图片描述"></p>
-<h2 id="模型架构参数"><a href="#模型架构参数" class="headerlink" title="模型架构参数"></a>模型架构参数</h2><pre class=" language-py"><code class="language-py">model.summary()</code></pre>
+<h2 id="模型架构参数"><a href="#模型架构参数" class="headerlink" title="模型架构参数"></a>模型架构参数</h2><pre class=" language-python"><code class="language-python">model<span class="token punctuation">.</span>summary<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
 <p><img src="https://img-blog.csdnimg.cn/20200228165227775.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>模型参数的计算方法</p>
-<pre class=" language-py"><code class="language-py"># 784 * 300 + 300 = 235500
-# 样本数 * 784
-# # [None, 784] * W + b -> [None, 300] W.shape [784, 300], b = [300]</code></pre>
-<h2 id="开始训练"><a href="#开始训练" class="headerlink" title="开始训练"></a>开始训练</h2><pre class=" language-py"><code class="language-py"># 传入训练数据 遍历10次数据集 每一个
-history = model.fit(x_train, y_train, epochs=10,
-                    validation_data=(x_valid, y_valid))</code></pre>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 784 * 300 + 300 = 235500</span>
+<span class="token comment" spellcheck="true"># 样本数 * 784</span>
+<span class="token comment" spellcheck="true"># # [None, 784] * W + b -> [None, 300] W.shape [784, 300], b = [300]</span></code></pre>
+<h2 id="开始训练"><a href="#开始训练" class="headerlink" title="开始训练"></a>开始训练</h2><pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 传入训练数据 遍历10次数据集 每一个</span>
+history <span class="token operator">=</span> model<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>x_train<span class="token punctuation">,</span> y_train<span class="token punctuation">,</span> epochs<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span>
+                    validation_data<span class="token operator">=</span><span class="token punctuation">(</span>x_valid<span class="token punctuation">,</span> y_valid<span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
 <p>每一批，会对数据集跟验证集做验证<br><img src="https://img-blog.csdnimg.cn/20200228165729898.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>发现准确度很低呀=。=（原因是sgd存在梯度弥散的可能，adam是在梯度弥散上对w和x都有优化）<br>把优化方法改成adam试试<br><img src="https://img-blog.csdnimg.cn/2020022817051141.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>查看一些指标<br><img src="https://img-blog.csdnimg.cn/20200228170821344.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="画图展示变化过程"><a href="#画图展示变化过程" class="headerlink" title="画图展示变化过程"></a>画图展示变化过程</h2><pre class=" language-py"><code class="language-py">def plot_learning_curves(history):
-    pd.DataFrame(history.history).plot(figsize=(8, 5))
-    # 显示网格
-    plt.grid(True)
-    # 设置坐标范围
-    plt.gca().set_ylim(0, 1)
-    plt.show()
+<h2 id="画图展示变化过程"><a href="#画图展示变化过程" class="headerlink" title="画图展示变化过程"></a>画图展示变化过程</h2><pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">plot_learning_curves</span><span class="token punctuation">(</span>history<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>history<span class="token punctuation">.</span>history<span class="token punctuation">)</span><span class="token punctuation">.</span>plot<span class="token punctuation">(</span>figsize<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># 显示网格</span>
+    plt<span class="token punctuation">.</span>grid<span class="token punctuation">(</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># 设置坐标范围</span>
+    plt<span class="token punctuation">.</span>gca<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>set_ylim<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-plot_learning_curves(history)</code></pre>
+plot_learning_curves<span class="token punctuation">(</span>history<span class="token punctuation">)</span></code></pre>
 <p><img src="https://img-blog.csdnimg.cn/20200228170944793.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <h2 id="归一化处理"><a href="#归一化处理" class="headerlink" title="归一化处理"></a>归一化处理</h2><p>图像识别，提高准确率的方法<br>1.对数据进行归一化<br>2.批归一化</p>
 <script>
