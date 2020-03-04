@@ -463,14 +463,14 @@
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        868
+                        762
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        4 分
+                        3 分
                     </div>
                     
                 
@@ -553,22 +553,23 @@ model<span class="token punctuation">.</span>compile<span class="token punctuati
 <ul>
 <li>selu 缓解梯度消失的问题</li>
 <li>selu 训练时间加快</li>
-<li>看图发现，在刚开始就能达到一个很好的效果，就有很好的准确率了<br><img src="https://img-blog.csdnimg.cn/20200229223045407.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>测试集验证<br><img src="https://img-blog.csdnimg.cn/20200229223326282.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><h2 id="添加dropout"><a href="#添加dropout" class="headerlink" title="添加dropout"></a>添加dropout</h2><pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># tf.keras.models.Sequential()</span>
-</code></pre>
-</li>
+<li>看图发现，在刚开始就能达到一个很好的效果，就有很好的准确率了<br><img src="https://img-blog.csdnimg.cn/20200229223045407.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>测试集验证<br><img src="https://img-blog.csdnimg.cn/20200229223326282.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><h2 id="添加dropout"><a href="#添加dropout" class="headerlink" title="添加dropout"></a>添加dropout</h2><pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true">#tf.keras.models.Sequential()</span>
+model <span class="token operator">=</span> keras<span class="token punctuation">.</span>models<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Flatten<span class="token punctuation">(</span>input_shape<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">28</span><span class="token punctuation">,</span> <span class="token number">28</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> _ <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+  model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">"selu"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 在最后层添加dropout 防止过拟合 比率设为0.5</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>AlphaDropout<span class="token punctuation">(</span>rate<span class="token operator">=</span><span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># AlphaDropout: 1. 均值和方差不变 2. 归一化性质也不变</span>
+<span class="token comment" spellcheck="true"># 普通dropout</span>
+<span class="token comment" spellcheck="true"># model.add(keras.layers.Dropout(rate=0.5))</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">"softmax"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>compile<span class="token punctuation">(</span>loss<span class="token operator">=</span><span class="token string">"sparse_categorical_crossentropy"</span><span class="token punctuation">,</span>
+            optimizer <span class="token operator">=</span> <span class="token string">"sgd"</span><span class="token punctuation">,</span>
+            metrics <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"accuracy"</span><span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre>
+<img src="https://img-blog.csdnimg.cn/20200229223954997.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>训练结果<br><img src="https://img-blog.csdnimg.cn/20200229224258775.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>学习曲线<br><img src="https://img-blog.csdnimg.cn/20200229224322922.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>测试集准确率<br>如果这个数据集的过拟合不是很严重，那么dropout的效果就一般<br><img src="https://img-blog.csdnimg.cn/20200229224340971.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
 </ul>
-<p>model = keras.models.Sequential()<br>model.add(keras.layers.Flatten(input_shape=[28, 28]))<br>for _ in range(20):<br>    model.add(keras.layers.Dense(100, activation=”selu”))</p>
-<h1 id="在最后层添加dropout-防止过拟合-比率设为0-5"><a href="#在最后层添加dropout-防止过拟合-比率设为0-5" class="headerlink" title="在最后层添加dropout 防止过拟合 比率设为0.5"></a>在最后层添加dropout 防止过拟合 比率设为0.5</h1><p>model.add(keras.layers.AlphaDropout(rate=0.5))</p>
-<h1 id="AlphaDropout-1-均值和方差不变-2-归一化性质也不变"><a href="#AlphaDropout-1-均值和方差不变-2-归一化性质也不变" class="headerlink" title="AlphaDropout: 1. 均值和方差不变 2. 归一化性质也不变"></a>AlphaDropout: 1. 均值和方差不变 2. 归一化性质也不变</h1><h1 id="普通dropout"><a href="#普通dropout" class="headerlink" title="普通dropout"></a>普通dropout</h1><h1 id="model-add-keras-layers-Dropout-rate-0-5"><a href="#model-add-keras-layers-Dropout-rate-0-5" class="headerlink" title="model.add(keras.layers.Dropout(rate=0.5))"></a>model.add(keras.layers.Dropout(rate=0.5))</h1><p>model.add(keras.layers.Dense(10, activation=”softmax”))</p>
-<p>model.compile(loss=”sparse_categorical_crossentropy”,<br>              optimizer = “sgd”,<br>              metrics = [“accuracy”])</p>
-<pre><code>![在这里插入图片描述](https://img-blog.csdnimg.cn/20200229223954997.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70)
-训练结果
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200229224258775.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70)
-学习曲线
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200229224322922.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70)
-测试集准确率
-如果这个数据集的过拟合不是很严重，那么dropout的效果就一般
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200229224340971.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70)</code></pre><script>
+<script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -826,7 +827,7 @@ model<span class="token punctuation">.</span>compile<span class="token punctuati
         repo: 'wmxnlfd.github.io',
         owner: 'wmxnlfd',
         admin: "wmxnlfd",
-        id: '2020-03-03T23-33-48',
+        id: '2020-03-03T23-34-50',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1111,7 +1112,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">48.9k</span>&nbsp;字
+                class="white-color">48.8k</span>&nbsp;字
             
             
             

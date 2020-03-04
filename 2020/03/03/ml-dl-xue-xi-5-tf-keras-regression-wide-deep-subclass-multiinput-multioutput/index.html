@@ -509,8 +509,9 @@ model<span class="token punctuation">.</span>summary<span class="token punctuati
 model<span class="token punctuation">.</span>compile<span class="token punctuation">(</span>loss<span class="token operator">=</span><span class="token string">"mean_squared_error"</span><span class="token punctuation">,</span> optimizer<span class="token operator">=</span><span class="token string">"sgd"</span><span class="token punctuation">)</span>
 callbacks <span class="token operator">=</span> <span class="token punctuation">[</span>keras<span class="token punctuation">.</span>callbacks<span class="token punctuation">.</span>EarlyStopping<span class="token punctuation">(</span>
   patience<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">,</span> min_delta<span class="token operator">=</span><span class="token number">1e</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">]</span></code></pre>
-<img src="https://img-blog.csdnimg.cn/20200301160416751.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>使用sgd<br><img src="https://img-blog.csdnimg.cn/20200301162033415.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">使用adam<br><img src="https://img-blog.csdnimg.cn/20200301162241497.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>学习曲线图<br><img src="https://img-blog.csdnimg.cn/20200301162321763.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>测试<br><img src="https://img-blog.csdnimg.cn/20200301162527499.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>因为wide的机构比较小，模型比较简单，比正常的回归模型loss要高</li>
+</li>
 </ul>
+<p><img src="https://img-blog.csdnimg.cn/20200301160416751.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>使用sgd<br><img src="https://img-blog.csdnimg.cn/20200301162033415.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">使用adam<br><img src="https://img-blog.csdnimg.cn/20200301162241497.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>学习曲线图<br><img src="https://img-blog.csdnimg.cn/20200301162321763.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>测试<br><img src="https://img-blog.csdnimg.cn/20200301162527499.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>因为wide的机构比较小，模型比较简单，比正常的回归模型loss要高</p>
 <h2 id="子类API实现"><a href="#子类API实现" class="headerlink" title="子类API实现"></a>子类API实现</h2><pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 子类API</span>
 <span class="token comment" spellcheck="true"># 子类继承父类</span>
 <span class="token keyword">class</span> <span class="token class-name">WideDeepModel</span><span class="token punctuation">(</span>keras<span class="token punctuation">.</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
@@ -869,7 +870,7 @@ history <span class="token operator">=</span> model<span class="token punctuatio
         repo: 'wmxnlfd.github.io',
         owner: 'wmxnlfd',
         admin: "wmxnlfd",
-        id: '2020-03-03T23-34-21',
+        id: '2020-03-03T23-35-21',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1151,7 +1152,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">48.9k</span>&nbsp;字
+                class="white-color">48.8k</span>&nbsp;字
             
             
             
