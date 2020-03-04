@@ -465,14 +465,14 @@ Wid">
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1.1k
+                        938
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        5 分
+                        4 分
                     </div>
                     
                 
@@ -505,51 +505,39 @@ output <span class="token operator">=</span> keras<span class="token punctuation
 <span class="token comment" spellcheck="true"># 固化模型 函数式api没有返回固化model 要自己设置</span>
 model <span class="token operator">=</span> keras<span class="token punctuation">.</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">(</span>inputs <span class="token operator">=</span> <span class="token punctuation">[</span>input<span class="token punctuation">]</span><span class="token punctuation">,</span>
                          outputs <span class="token operator">=</span> <span class="token punctuation">[</span>output<span class="token punctuation">]</span><span class="token punctuation">)</span>
-</code></pre>
-</li>
+model<span class="token punctuation">.</span>summary<span class="token punctuation">(</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>compile<span class="token punctuation">(</span>loss<span class="token operator">=</span><span class="token string">"mean_squared_error"</span><span class="token punctuation">,</span> optimizer<span class="token operator">=</span><span class="token string">"sgd"</span><span class="token punctuation">)</span>
+callbacks <span class="token operator">=</span> <span class="token punctuation">[</span>keras<span class="token punctuation">.</span>callbacks<span class="token punctuation">.</span>EarlyStopping<span class="token punctuation">(</span>
+  patience<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">,</span> min_delta<span class="token operator">=</span><span class="token number">1e</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">]</span></code></pre>
+<img src="https://img-blog.csdnimg.cn/20200301160416751.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>使用sgd<br><img src="https://img-blog.csdnimg.cn/20200301162033415.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">使用adam<br><img src="https://img-blog.csdnimg.cn/20200301162241497.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>学习曲线图<br><img src="https://img-blog.csdnimg.cn/20200301162321763.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>测试<br><img src="https://img-blog.csdnimg.cn/20200301162527499.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>因为wide的机构比较小，模型比较简单，比正常的回归模型loss要高</li>
 </ul>
-<p>model.summary()<br>model.compile(loss=”mean_squared_error”, optimizer=”sgd”)<br>callbacks = [keras.callbacks.EarlyStopping(<br>    patience=5, min_delta=1e-2)]</p>
-<pre><code>![在这里插入图片描述](https://img-blog.csdnimg.cn/20200301160416751.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70)
-使用sgd
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200301162033415.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70)使用adam
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200301162241497.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70)
-学习曲线图
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200301162321763.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70)
-测试
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200301162527499.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70)
-因为wide的机构比较小，模型比较简单，比正常的回归模型loss要高
-
-## 子类API实现
-```python
-# 子类API
-# 子类继承父类
-class WideDeepModel(keras.models.Model):
-    def __init__(self):
-        super(WideDeepModel, self).__init__()
-        """定义模型的层次"""
-        self.hidden1_layer = keras.layers.Dense(30, activation='relu')
-        self.hidden2_layer = keras.layers.Dense(30, activation='relu')
-        self.output_layer = keras.layers.Dense(1)
-
-    def call(self, input):
-        """完成模型的正向计算"""
-        hidden1 = self.hidden1_layer(input)
-        hidden2 = self.hidden2_layer(hidden1)
-        concat = keras.layers.concatenate([input, hidden2])
-        output = self.output_layer(concat)
-        return output
-# 创建对象       
-# model = WideDeepModel()
-model = keras.models.Sequential([
-    WideDeepModel(),
-])
-
-model.build(input_shape=(None, 8))
-
-model.summary()
-model.compile(loss="mean_squared_error", optimizer="sgd")
-callbacks = [keras.callbacks.EarlyStopping(
-    patience=5, min_delta=1e-2)]</code></pre><p><img src="https://img-blog.csdnimg.cn/20200301165007221.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200301165108270.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>测试运行<br><img src="https://img-blog.csdnimg.cn/20200301165545315.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>上面wide &amp; deep 模型的输入是一样的 如果输入不一样要怎么实现呢？</p>
+<h2 id="子类API实现"><a href="#子类API实现" class="headerlink" title="子类API实现"></a>子类API实现</h2><pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 子类API</span>
+<span class="token comment" spellcheck="true"># 子类继承父类</span>
+<span class="token keyword">class</span> <span class="token class-name">WideDeepModel</span><span class="token punctuation">(</span>keras<span class="token punctuation">.</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        super<span class="token punctuation">(</span>WideDeepModel<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token triple-quoted-string string">"""定义模型的层次"""</span>
+        self<span class="token punctuation">.</span>hidden1_layer <span class="token operator">=</span> keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">'relu'</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>hidden2_layer <span class="token operator">=</span> keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">'relu'</span><span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>output_layer <span class="token operator">=</span> keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>    
+    <span class="token keyword">def</span> <span class="token function">call</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> input<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">"""完成模型的正向计算"""</span>
+        hidden1 <span class="token operator">=</span> self<span class="token punctuation">.</span>hidden1_layer<span class="token punctuation">(</span>input<span class="token punctuation">)</span>
+        hidden2 <span class="token operator">=</span> self<span class="token punctuation">.</span>hidden2_layer<span class="token punctuation">(</span>hidden1<span class="token punctuation">)</span>
+        concat <span class="token operator">=</span> keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>concatenate<span class="token punctuation">(</span><span class="token punctuation">[</span>input<span class="token punctuation">,</span> hidden2<span class="token punctuation">]</span><span class="token punctuation">)</span>
+        output <span class="token operator">=</span> self<span class="token punctuation">.</span>output_layer<span class="token punctuation">(</span>concat<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> output
+<span class="token comment" spellcheck="true"># 创建对象       </span>
+<span class="token comment" spellcheck="true"># model = WideDeepModel()</span>
+model <span class="token operator">=</span> keras<span class="token punctuation">.</span>models<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span><span class="token punctuation">[</span>
+    WideDeepModel<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>build<span class="token punctuation">(</span>input_shape<span class="token operator">=</span><span class="token punctuation">(</span>None<span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">)</span>        
+model<span class="token punctuation">.</span>summary<span class="token punctuation">(</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>compile<span class="token punctuation">(</span>loss<span class="token operator">=</span><span class="token string">"mean_squared_error"</span><span class="token punctuation">,</span> optimizer<span class="token operator">=</span><span class="token string">"sgd"</span><span class="token punctuation">)</span>
+callbacks <span class="token operator">=</span> <span class="token punctuation">[</span>keras<span class="token punctuation">.</span>callbacks<span class="token punctuation">.</span>EarlyStopping<span class="token punctuation">(</span>
+    patience<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">,</span> min_delta<span class="token operator">=</span><span class="token number">1e</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">]</span></code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200301165007221.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200301165108270.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>测试运行<br><img src="https://img-blog.csdnimg.cn/20200301165545315.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>上面wide &amp; deep 模型的输入是一样的 如果输入不一样要怎么实现呢？</p>
 <h2 id="多输入wide-amp-deep模型"><a href="#多输入wide-amp-deep模型" class="headerlink" title="多输入wide&amp;deep模型"></a>多输入wide&amp;deep模型</h2><pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 多输入</span>
 <span class="token comment" spellcheck="true">#使用函数式api调用方法</span>
 <span class="token comment" spellcheck="true"># 取前5个feature作为wide的输入</span>
@@ -561,9 +549,7 @@ hidden2 <span class="token operator">=</span> keras<span class="token punctuatio
 concat <span class="token operator">=</span> keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>concatenate<span class="token punctuation">(</span><span class="token punctuation">[</span>input_wide<span class="token punctuation">,</span> hidden2<span class="token punctuation">]</span><span class="token punctuation">)</span>
 output <span class="token operator">=</span> keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">(</span>concat<span class="token punctuation">)</span>
 model <span class="token operator">=</span> keras<span class="token punctuation">.</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">(</span>inputs <span class="token operator">=</span> <span class="token punctuation">[</span>input_wide<span class="token punctuation">,</span> input_deep<span class="token punctuation">]</span><span class="token punctuation">,</span>
-                           outputs <span class="token operator">=</span> <span class="token punctuation">[</span>output<span class="token punctuation">]</span><span class="token punctuation">)</span>
-
-
+                           outputs <span class="token operator">=</span> <span class="token punctuation">[</span>output<span class="token punctuation">]</span><span class="token punctuation">)</span>        
 model<span class="token punctuation">.</span>compile<span class="token punctuation">(</span>loss<span class="token operator">=</span><span class="token string">"mean_squared_error"</span><span class="token punctuation">,</span> optimizer<span class="token operator">=</span><span class="token string">"sgd"</span><span class="token punctuation">)</span>
 callbacks <span class="token operator">=</span> <span class="token punctuation">[</span>keras<span class="token punctuation">.</span>callbacks<span class="token punctuation">.</span>EarlyStopping<span class="token punctuation">(</span>
     patience<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">,</span> min_delta<span class="token operator">=</span><span class="token number">1e</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
@@ -578,7 +564,6 @@ x_valid_scaled_wide <span class="token operator">=</span> x_valid_scaled<span cl
 x_valid_scaled_deep <span class="token operator">=</span> x_valid_scaled<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
 x_test_scaled_wide <span class="token operator">=</span> x_test_scaled<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token punctuation">:</span><span class="token number">5</span><span class="token punctuation">]</span>
 x_test_scaled_deep <span class="token operator">=</span> x_test_scaled<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
-
 history <span class="token operator">=</span> model<span class="token punctuation">.</span>fit<span class="token punctuation">(</span><span class="token punctuation">[</span>x_train_scaled_wide<span class="token punctuation">,</span> x_train_scaled_deep<span class="token punctuation">]</span><span class="token punctuation">,</span>
                     y_train<span class="token punctuation">,</span>
                     validation_data <span class="token operator">=</span> <span class="token punctuation">(</span>
@@ -601,9 +586,7 @@ output <span class="token operator">=</span> keras<span class="token punctuation
 output2 <span class="token operator">=</span> keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">(</span>hidden2<span class="token punctuation">)</span>
 model <span class="token operator">=</span> keras<span class="token punctuation">.</span>models<span class="token punctuation">.</span>Model<span class="token punctuation">(</span>inputs <span class="token operator">=</span> <span class="token punctuation">[</span>input_wide<span class="token punctuation">,</span> input_deep<span class="token punctuation">]</span><span class="token punctuation">,</span>
                             <span class="token comment" spellcheck="true">#输出两个</span>
-                           outputs <span class="token operator">=</span> <span class="token punctuation">[</span>output<span class="token punctuation">,</span> output2<span class="token punctuation">]</span><span class="token punctuation">)</span>
-
-
+                           outputs <span class="token operator">=</span> <span class="token punctuation">[</span>output<span class="token punctuation">,</span> output2<span class="token punctuation">]</span><span class="token punctuation">)</span>      
 model<span class="token punctuation">.</span>compile<span class="token punctuation">(</span>loss<span class="token operator">=</span><span class="token string">"mean_squared_error"</span><span class="token punctuation">,</span> optimizer<span class="token operator">=</span><span class="token string">"sgd"</span><span class="token punctuation">)</span>
 callbacks <span class="token operator">=</span> <span class="token punctuation">[</span>keras<span class="token punctuation">.</span>callbacks<span class="token punctuation">.</span>EarlyStopping<span class="token punctuation">(</span>
     patience<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">,</span> min_delta<span class="token operator">=</span><span class="token number">1e</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
@@ -615,7 +598,6 @@ x_valid_scaled_wide <span class="token operator">=</span> x_valid_scaled<span cl
 x_valid_scaled_deep <span class="token operator">=</span> x_valid_scaled<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
 x_test_scaled_wide <span class="token operator">=</span> x_test_scaled<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token punctuation">:</span><span class="token number">5</span><span class="token punctuation">]</span>
 x_test_scaled_deep <span class="token operator">=</span> x_test_scaled<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
-
 history <span class="token operator">=</span> model<span class="token punctuation">.</span>fit<span class="token punctuation">(</span><span class="token punctuation">[</span>x_train_scaled_wide<span class="token punctuation">,</span> x_train_scaled_deep<span class="token punctuation">]</span><span class="token punctuation">,</span>
                     <span class="token comment" spellcheck="true"># 两个输出</span>
                     <span class="token punctuation">[</span>y_train<span class="token punctuation">,</span> y_train<span class="token punctuation">]</span><span class="token punctuation">,</span>
@@ -1169,7 +1151,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">49.1k</span>&nbsp;字
+                class="white-color">48.9k</span>&nbsp;字
             
             
             
