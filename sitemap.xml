@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wmxnlfd.github.io/2020/03/07/ml-dl-xue-xi-8-tf-keras-regression-customized-loss-layers/</loc>
+    
+    <lastmod>2020-03-07T02:22:10.737Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wmxnlfd.github.io/2020/03/06/ml-dl-xue-xi-7-tf-basic-api/</loc>
+    
+    <lastmod>2020-03-07T02:21:36.931Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://wmxnlfd.github.io/2020/03/04/ml-dl-xue-xi-6-tf-keras-regression-hp-search-sklearn/</loc>
     
     <lastmod>2020-03-04T12:58:58.127Z</lastmod>

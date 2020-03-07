@@ -894,36 +894,37 @@ model<span class="token punctuation">.</span>evaluate<span class="token punctuat
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/03/04/ml-dl-xue-xi-6-tf-keras-regression-hp-search-sklearn/">
+                <a href="/2020/03/06/ml-dl-xue-xi-7-tf-basic-api/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="【ML&DL学习】6 tf keras regression hp search sklearn">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="【ML&DL学习】7 tf basic api">
                         
-                        <span class="card-title">【ML&DL学习】6 tf keras regression hp search sklearn</span>
+                        <span class="card-title">【ML&DL学习】7 tf basic api</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            超参数搜索搜索策略：
+                            基础API常量
+# 定义常量 定义二位矩阵 并初始化
+t = tf.constant([[1., 2., 3.], [4., 5., 6.]])
 
-网格搜索
-随机搜索
-遗传算法搜索
-启发式搜索手动搜索 learning rate# learning_rate: [1e-4, 3e-4, 1e-3, 3e-3, 1e-2, 3e-2]
-# W = W + grad
+# index
+print(t)
+# 取出第二列以后的数据
+print(t[:, 1:])
+
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-04
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-06
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -936,7 +937,6 @@ model<span class="token punctuation">.</span>evaluate<span class="token punctuat
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -1160,7 +1160,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">49.8k</span>&nbsp;字
+                class="white-color">50.8k</span>&nbsp;字
             
             
             
