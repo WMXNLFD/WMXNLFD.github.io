@@ -851,34 +851,30 @@ customized_softplus <span class="token operator">=</span> keras<span class="toke
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/03/07/ml-dl-xue-xi-8-tf-keras-regression-customized-loss-layers/">
+                <a href="/2020/03/08/ml-dl-xue-xi-9-tf-function-and-auto-graph/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="【ML&DL学习】8 tf keras regression customized loss layers">
+                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="【ML&DL学习】9 tf function and auto graph">
                         
-                        <span class="card-title">【ML&DL学习】8 tf keras regression customized loss layers</span>
+                        <span class="card-title">【ML&DL学习】9 tf function and auto graph</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            自定义损失函数之前使用的损失函数
-def customized_mse(y_true, y_pred):
-    return tf.reduce_mean(tf.square(y_pred - y_true))
-
-model = kera
+                            tf.function把普通python语法写的函数或者代码变成TensorFlow里面的图auto-graph 是tf.function所依赖的一个机制，这种机制可以把python语法的东西变成TensorFlow里面的图
+# tf.fu
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-07
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-08
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -891,7 +887,6 @@ model = kera
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -1120,7 +1115,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">50.8k</span>&nbsp;字
+                class="white-color">52.2k</span>&nbsp;字
             
             
             

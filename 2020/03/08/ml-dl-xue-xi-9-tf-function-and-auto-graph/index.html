@@ -4,9 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="【ML&amp;DL学习】4 tf keras classification model dnn bn selu dropout, 追梦者">
-    <meta name="description" content="回忆一些神经网络的知识第一种归一化到 0-1之间第二种是上次用的未归一化是椭圆，归一化后是正圆，这样梯度下降，等高线是正圆，计算梯度没有那么曲折，训练速度加快。把一些节点随机失效弃用，变成一个子网络还有一个降低计算量
-定义一个深度神经网络#">
+    <meta name="keywords" content="【ML&amp;DL学习】9 tf function and auto graph, 追梦者">
+    <meta name="description" content="tf.function把普通python语法写的函数或者代码变成TensorFlow里面的图auto-graph 是tf.function所依赖的一个机制，这种机制可以把python语法的东西变成TensorFlow里面的图
+# tf.fu">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +14,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>【ML&amp;DL学习】4 tf keras classification model dnn bn selu dropout | WMXNLFD</title>
+    <title>【ML&amp;DL学习】9 tf function and auto graph | WMXNLFD</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -306,13 +306,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/25.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        【ML&amp;DL学习】4 tf keras classification model dnn bn selu dropout
+                        【ML&amp;DL学习】9 tf function and auto graph
                     </div>
                 </div>
             </div>
@@ -456,21 +456,21 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-03
+                    2020-03-08
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        762
+                        481
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        3 分
+                        2 分
                     </div>
                     
                 
@@ -486,89 +486,59 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="回忆一些神经网络的知识"><a href="#回忆一些神经网络的知识" class="headerlink" title="回忆一些神经网络的知识"></a>回忆一些神经网络的知识</h2><p><img src="https://img-blog.csdnimg.cn/20200229204357783.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200229204554889.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>第一种归一化到 0-1之间<br>第二种是上次用的<br><img src="https://img-blog.csdnimg.cn/20200229204714245.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>未归一化是椭圆，归一化后是正圆，这样梯度下降，等高线是正圆，计算梯度没有那么曲折，训练速度加快。<br><img src="https://img-blog.csdnimg.cn/20200229204750413.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>把一些节点随机失效弃用，变成一个子网络<br><img src="https://img-blog.csdnimg.cn/20200229205106887.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>还有一个降低计算量</p>
-<h2 id="定义一个深度神经网络"><a href="#定义一个深度神经网络" class="headerlink" title="定义一个深度神经网络"></a>定义一个深度神经网络</h2><pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># tf.keras.models.Sequential()</span>
+                <h2 id="tf-function"><a href="#tf-function" class="headerlink" title="tf.function"></a>tf.function</h2><p>把普通python语法写的函数或者代码变成TensorFlow里面的图<br>auto-graph 是tf.function所依赖的一个机制，这种机制可以把python语法的东西变成TensorFlow里面的图</p>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># tf.function and auto-graph.</span>
+<span class="token comment" spellcheck="true">#          输入 缩放因子</span>
+<span class="token keyword">def</span> <span class="token function">scaled_elu</span><span class="token punctuation">(</span>z<span class="token punctuation">,</span> scale<span class="token operator">=</span><span class="token number">1.0</span><span class="token punctuation">,</span> alpha<span class="token operator">=</span><span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment" spellcheck="true"># z >= 0 ? scale * z : scale * alpha * tf.nn.elu(z)</span>
+    <span class="token comment" spellcheck="true"># 判断z是不是大于0</span>
+    is_positive <span class="token operator">=</span> tf<span class="token punctuation">.</span>greater_equal<span class="token punctuation">(</span>z<span class="token punctuation">,</span> <span class="token number">0.0</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># where实现三元表达式</span>
+    <span class="token keyword">return</span> scale <span class="token operator">*</span> tf<span class="token punctuation">.</span>where<span class="token punctuation">(</span>is_positive<span class="token punctuation">,</span> z<span class="token punctuation">,</span> alpha <span class="token operator">*</span> tf<span class="token punctuation">.</span>nn<span class="token punctuation">.</span>elu<span class="token punctuation">(</span>z<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">#输入一个标量</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>scaled_elu<span class="token punctuation">(</span>tf<span class="token punctuation">.</span>constant<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">#输入一个向量</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>scaled_elu<span class="token punctuation">(</span>tf<span class="token punctuation">.</span>constant<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">.</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">2.5</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 使用tf.function 把python函数 变成TensorFlow里面的图实现函数</span>
+scaled_elu_tf <span class="token operator">=</span> tf<span class="token punctuation">.</span>function<span class="token punctuation">(</span>scaled_elu<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>scaled_elu_tf<span class="token punctuation">(</span>tf<span class="token punctuation">.</span>constant<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>scaled_elu_tf<span class="token punctuation">(</span>tf<span class="token punctuation">.</span>constant<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">.</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">2.5</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 使用python_function转为python函数</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>scaled_elu_tf<span class="token punctuation">.</span>python_function <span class="token keyword">is</span> scaled_elu<span class="token punctuation">)</span></code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200303140909471.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>转化为这种图结构有什么优势？速度快<br><img src="https://img-blog.csdnimg.cn/20200303141242193.png" alt="在这里插入图片描述"><br>GPU的加速比会更大。</p>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 1 + 1/2 + 1/2^2 + ... + 1/2^n</span>
+<span class="token comment" spellcheck="true"># 使用下面的代码 把python代码转化为图结构</span>
+@tf<span class="token punctuation">.</span>function
+<span class="token keyword">def</span> <span class="token function">converge_to_2</span><span class="token punctuation">(</span>n_iters<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    total <span class="token operator">=</span> tf<span class="token punctuation">.</span>constant<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">.</span><span class="token punctuation">)</span>
+    increment <span class="token operator">=</span> tf<span class="token punctuation">.</span>constant<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">.</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> _ <span class="token keyword">in</span> range<span class="token punctuation">(</span>n_iters<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        total <span class="token operator">+=</span> increment
+        increment <span class="token operator">/=</span> <span class="token number">2.0</span>
+    <span class="token keyword">return</span> total
 
-model <span class="token operator">=</span> keras<span class="token punctuation">.</span>models<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 把输入数据拉直展平</span>
-model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Flatten<span class="token punctuation">(</span>input_shape<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">28</span><span class="token punctuation">,</span> <span class="token number">28</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># for循环添加20层</span>
-<span class="token keyword">for</span> _ <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">"relu"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">"softmax"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>converge_to_2<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200303141927162.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 转化为TensorFlow代码 然后生成tensorflow里面的图结构</span>
+<span class="token keyword">def</span> <span class="token function">display_tf_code</span><span class="token punctuation">(</span>func<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    code <span class="token operator">=</span> tf<span class="token punctuation">.</span>autograph<span class="token punctuation">.</span>to_code<span class="token punctuation">(</span>func<span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># 展示代码</span>
+    <span class="token keyword">from</span> IPython<span class="token punctuation">.</span>display <span class="token keyword">import</span> display<span class="token punctuation">,</span> Markdown
+    display<span class="token punctuation">(</span>Markdown<span class="token punctuation">(</span><span class="token string">'```python\n{}\n```'</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>code<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<p><img src="https://img-blog.csdnimg.cn/2020030314234782.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200303142832162.png" alt="在这里插入图片描述"><br>Variable不能定义在函数里面，在定义神经网络的时候，在转成function之前，需要把变量全部初始化</p>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 添加类型限定       输入参数的类型 限制输入tf.int32 名字为x</span>
+@tf<span class="token punctuation">.</span>function<span class="token punctuation">(</span>input_signature<span class="token operator">=</span><span class="token punctuation">[</span>tf<span class="token punctuation">.</span>TensorSpec<span class="token punctuation">(</span><span class="token punctuation">[</span>None<span class="token punctuation">]</span><span class="token punctuation">,</span> tf<span class="token punctuation">.</span>int32<span class="token punctuation">,</span> name<span class="token operator">=</span><span class="token string">'x'</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">def</span> <span class="token function">cube</span><span class="token punctuation">(</span>z<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> tf<span class="token punctuation">.</span>pow<span class="token punctuation">(</span>z<span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
 
-model<span class="token punctuation">.</span>compile<span class="token punctuation">(</span>loss<span class="token operator">=</span><span class="token string">"sparse_categorical_crossentropy"</span><span class="token punctuation">,</span>
-              optimizer <span class="token operator">=</span> <span class="token string">"sgd"</span><span class="token punctuation">,</span>
-              metrics <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"accuracy"</span><span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre>
-<p>查看模型</p>
-<pre class=" language-c"><code class="language-c">model<span class="token punctuation">.</span><span class="token function">summary</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
-<p>是一个二十层的神经网络<br><img src="https://img-blog.csdnimg.cn/20200229212516527.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>进行训练<br><img src="https://img-blog.csdnimg.cn/20200229212900982.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>学习曲线图</p>
-<pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">plot_learning_curves</span><span class="token punctuation">(</span>history<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>history<span class="token punctuation">.</span>history<span class="token punctuation">)</span><span class="token punctuation">.</span>plot<span class="token punctuation">(</span>figsize<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    plt<span class="token punctuation">.</span>grid<span class="token punctuation">(</span><span class="token boolean">True</span><span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true"># 纵坐标不够 修改(0, 3)</span>
-    plt<span class="token punctuation">.</span>gca<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>set_ylim<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
-    plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">try</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>cube<span class="token punctuation">(</span>tf<span class="token punctuation">.</span>constant<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">.</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">.</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">.</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">except</span> ValueError <span class="token keyword">as</span> ex<span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>ex<span class="token punctuation">)</span>
 
-plot_learning_curves<span class="token punctuation">(</span>history<span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 一开始loss变化不大，没有下降</span>
-<span class="token comment" spellcheck="true"># 1. 参数众多，训练不充分</span>
-<span class="token comment" spellcheck="true"># 2. 梯度消失 -> 链式法则 -> 复合函数f(g(x))</span></code></pre>
-<p><img src="https://img-blog.csdnimg.cn/2020022921301971.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>测试集的准确率<br><img src="https://img-blog.csdnimg.cn/20200229213312923.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="批归一化"><a href="#批归一化" class="headerlink" title="批归一化"></a>批归一化</h2><pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># tf.keras.models.Sequential()</span>
-
-model <span class="token operator">=</span> keras<span class="token punctuation">.</span>models<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span><span class="token punctuation">)</span>
-model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Flatten<span class="token punctuation">(</span>input_shape<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">28</span><span class="token punctuation">,</span> <span class="token number">28</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token keyword">for</span> _ <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">"relu"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true"># 添加批归一化 激活函数在批归一化之前</span>
-    model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>BatchNormalization<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true"># 下面是激活函数在批归一化之后</span>
-    <span class="token triple-quoted-string string">"""
-    # 没有激活函数的全连接层
-    model.add(keras.layers.Dense(100))
-    model.add(keras.layers.BatchNormalization())
-    model.add(keras.layers.Activation('relu'))
-    """</span>
-model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">"softmax"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-model<span class="token punctuation">.</span>compile<span class="token punctuation">(</span>loss<span class="token operator">=</span><span class="token string">"sparse_categorical_crossentropy"</span><span class="token punctuation">,</span>
-              optimizer <span class="token operator">=</span> <span class="token string">"sgd"</span><span class="token punctuation">,</span>
-              metrics <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"accuracy"</span><span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20200229221528665.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>批归一化后进行模型训练<br><img src="https://img-blog.csdnimg.cn/20200229221633912.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>训练图，可以发现一开始的loss不会不下降了<br>批归一化可以缓解梯度消失（批归一化可以使每层的值非常规整）<br><img src="https://img-blog.csdnimg.cn/20200229221654232.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>准确率<br><img src="https://img-blog.csdnimg.cn/20200229222005573.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="更改激活函数"><a href="#更改激活函数" class="headerlink" title="更改激活函数"></a>更改激活函数</h2><pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># tf.keras.models.Sequential()</span>
-
-model <span class="token operator">=</span> keras<span class="token punctuation">.</span>models<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span><span class="token punctuation">)</span>
-model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Flatten<span class="token punctuation">(</span>input_shape<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">28</span><span class="token punctuation">,</span> <span class="token number">28</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token keyword">for</span> _ <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token comment" spellcheck="true"># selu 自带归一化功能的一个激活函数</span>
-    model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">"selu"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">"softmax"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-model<span class="token punctuation">.</span>compile<span class="token punctuation">(</span>loss<span class="token operator">=</span><span class="token string">"sparse_categorical_crossentropy"</span><span class="token punctuation">,</span>
-              optimizer <span class="token operator">=</span> <span class="token string">"sgd"</span><span class="token punctuation">,</span>
-              metrics <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"accuracy"</span><span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre>
-<p>训练效果<br><img src="https://img-blog.csdnimg.cn/20200229223005678.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>训练图像</p>
-<ul>
-<li>selu 缓解梯度消失的问题</li>
-<li>selu 训练时间加快</li>
-<li>看图发现，在刚开始就能达到一个很好的效果，就有很好的准确率了<br><img src="https://img-blog.csdnimg.cn/20200229223045407.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>测试集验证<br><img src="https://img-blog.csdnimg.cn/20200229223326282.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><h2 id="添加dropout"><a href="#添加dropout" class="headerlink" title="添加dropout"></a>添加dropout</h2><pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true">#tf.keras.models.Sequential()</span>
-model <span class="token operator">=</span> keras<span class="token punctuation">.</span>models<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span><span class="token punctuation">)</span>
-model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Flatten<span class="token punctuation">(</span>input_shape<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">28</span><span class="token punctuation">,</span> <span class="token number">28</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token keyword">for</span> _ <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-  model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">"selu"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 在最后层添加dropout 防止过拟合 比率设为0.5</span>
-model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>AlphaDropout<span class="token punctuation">(</span>rate<span class="token operator">=</span><span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># AlphaDropout: 1. 均值和方差不变 2. 归一化性质也不变</span>
-<span class="token comment" spellcheck="true"># 普通dropout</span>
-<span class="token comment" spellcheck="true"># model.add(keras.layers.Dropout(rate=0.5))</span>
-model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">"softmax"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-model<span class="token punctuation">.</span>compile<span class="token punctuation">(</span>loss<span class="token operator">=</span><span class="token string">"sparse_categorical_crossentropy"</span><span class="token punctuation">,</span>
-            optimizer <span class="token operator">=</span> <span class="token string">"sgd"</span><span class="token punctuation">,</span>
-            metrics <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"accuracy"</span><span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre>
-<img src="https://img-blog.csdnimg.cn/20200229223954997.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>训练结果<br><img src="https://img-blog.csdnimg.cn/20200229224258775.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>学习曲线<br><img src="https://img-blog.csdnimg.cn/20200229224322922.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>测试集准确率<br>如果这个数据集的过拟合不是很严重，那么dropout的效果就一般<br><img src="https://img-blog.csdnimg.cn/20200229224340971.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
-</ul>
+<span class="token keyword">print</span><span class="token punctuation">(</span>cube<span class="token punctuation">(</span>tf<span class="token punctuation">.</span>constant<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200303143440802.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/2020030314424043.png" alt="在这里插入图片描述"><br>看新参数获得的对象和原参数是否一致，他们的signation是一样的<br><img src="https://img-blog.csdnimg.cn/20200303144406145.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200303144550951.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200303145942757.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200303150021105.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200303150113627.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200303150159471.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -612,7 +582,7 @@ model<span class="token punctuation">.</span>compile<span class="token punctuati
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wmxnlfd.github.io/2020/03/03/ml-dl-xue-xi-4-tf-keras-classification-model-dnn-bn-selu-dropout/">https://wmxnlfd.github.io/2020/03/03/ml-dl-xue-xi-4-tf-keras-classification-model-dnn-bn-selu-dropout/</a>
+                    <a href="https://wmxnlfd.github.io/2020/03/08/ml-dl-xue-xi-9-tf-function-and-auto-graph/">https://wmxnlfd.github.io/2020/03/08/ml-dl-xue-xi-9-tf-function-and-auto-graph/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -827,7 +797,7 @@ model<span class="token punctuation">.</span>compile<span class="token punctuati
         repo: 'wmxnlfd.github.io',
         owner: 'wmxnlfd',
         admin: "wmxnlfd",
-        id: '2020-03-03T23-34-50',
+        id: '2020-03-08T20-36-24',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -852,27 +822,28 @@ model<span class="token punctuation">.</span>compile<span class="token punctuati
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/03/03/ml-dl-xue-xi-5-tf-keras-regression-wide-deep-subclass-multiinput-multioutput/">
+                <a href="/2020/03/08/ml-dl-xue-xi-10-tf-diffs-and-keras-regression-manu-diffs/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="【ML&DL学习】5 tf keras regression wide deep subclass multiinput multioutput">
+                        <img src="/medias/featureimages/27.jpg" class="responsive-img" alt="【ML&DL学习】10 tf diffs and keras regression manu diffs">
                         
-                        <span class="card-title">【ML&DL学习】5 tf keras regression wide deep subclass multiinput multioutput</span>
+                        <span class="card-title">【ML&DL学习】10 tf diffs and keras regression manu diffs</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Wide &amp; Deep 模型分类求一个分布，回归求一个数值用向量表达出 词与词之间的距离
+                            自定义求导def f(x):
+    return 3. * x ** 2 + 2. * x - 1
 
-Wide模型只有一层，所有输入直接连接输出，输入是稀疏特征，也就是one-hot表达，one-hot表达每个分量直接连接在输出层上。
-Wid
+def approximate_derivative(f, x, eps=1e-3):
+    #向左移动eps的值 向右移动eps的值
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-03
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-08
                         </span>
                         <span class="publish-author">
                             
@@ -912,37 +883,35 @@ Wid
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/03/02/cong-ling-kai-shi-de-shua-leetcode-sheng-huo-di-47-qi-501-515/">
+                <a href="/2020/03/07/ml-dl-xue-xi-8-tf-keras-regression-customized-loss-layers/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="从零开始的刷LeetCode生活 第47期 501-515">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="【ML&DL学习】8 tf keras regression customized loss layers">
                         
-                        <span class="card-title">从零开始的刷LeetCode生活 第47期 501-515</span>
+                        <span class="card-title">【ML&DL学习】8 tf keras regression customized loss layers</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *
+                            自定义损失函数之前使用的损失函数
+def customized_mse(y_true, y_pred):
+    return tf.reduce_mean(tf.square(y_pred - y_true))
+
+model = kera
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-02
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-07
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" class="post-category">
-                                    数据结构和算法
+                            <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    机器学习和深度学习
                                 </a>
                             
                             
@@ -952,16 +921,16 @@ Wid
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/LeetCode/">
-                        <span class="chip bg-color">LeetCode</span>
+                    <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">机器学习</span>
                     </a>
                     
-                    <a href="/tags/C/">
-                        <span class="chip bg-color">C++</span>
+                    <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">深度学习</span>
                     </a>
                     
-                    <a href="/tags/%E7%AC%94%E8%AF%95%E5%88%B7%E9%A2%98/">
-                        <span class="chip bg-color">笔试刷题</span>
+                    <a href="/tags/TensorFlow/">
+                        <span class="chip bg-color">TensorFlow</span>
                     </a>
                     
                 </div>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wmxnlfd.github.io/"/>
-  <updated>2020-03-07T02:22:10.737Z</updated>
+  <updated>2020-03-08T12:38:34.554Z</updated>
   <id>https://wmxnlfd.github.io/</id>
   
   <author>
@@ -15,6 +15,68 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【ML&amp;DL学习】10 tf diffs and keras regression manu diffs</title>
+    <link href="https://wmxnlfd.github.io/2020/03/08/ml-dl-xue-xi-10-tf-diffs-and-keras-regression-manu-diffs/"/>
+    <id>https://wmxnlfd.github.io/2020/03/08/ml-dl-xue-xi-10-tf-diffs-and-keras-regression-manu-diffs/</id>
+    <published>2020-03-08T12:36:52.000Z</published>
+    <updated>2020-03-08T12:38:34.554Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;自定义求导&quot;&gt;&lt;a href=&quot;#自定义求导&quot; class=&quot;headerlink&quot; title=&quot;自定义求导&quot;&gt;&lt;/a&gt;自定义求导&lt;/h2&gt;&lt;pre class=&quot; language-python&quot;&gt;&lt;code
+        
+      
+    
+    </summary>
+    
+    
+      <category term="机器学习和深度学习" scheme="https://wmxnlfd.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="机器学习" scheme="https://wmxnlfd.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="深度学习" scheme="https://wmxnlfd.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="TensorFlow" scheme="https://wmxnlfd.github.io/tags/TensorFlow/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【ML&amp;DL学习】9 tf function and auto graph</title>
+    <link href="https://wmxnlfd.github.io/2020/03/08/ml-dl-xue-xi-9-tf-function-and-auto-graph/"/>
+    <id>https://wmxnlfd.github.io/2020/03/08/ml-dl-xue-xi-9-tf-function-and-auto-graph/</id>
+    <published>2020-03-08T12:36:24.000Z</published>
+    <updated>2020-03-08T12:37:58.625Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;tf-function&quot;&gt;&lt;a href=&quot;#tf-function&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="机器学习和深度学习" scheme="https://wmxnlfd.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="机器学习" scheme="https://wmxnlfd.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="深度学习" scheme="https://wmxnlfd.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="TensorFlow" scheme="https://wmxnlfd.github.io/tags/TensorFlow/"/>
+    
+  </entry>
   
   <entry>
     <title>【ML&amp;DL学习】8 tf keras regression customized loss layers</title>
@@ -551,68 +613,6 @@
     <id>https://wmxnlfd.github.io/2020/02/09/cong-ling-kai-shi-de-shua-leetcode-sheng-huo-di-39-qi-401-413/</id>
     <published>2020-02-09T14:01:10.000Z</published>
     <updated>2020-02-09T14:02:30.100Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;img
-        
-      
-    
-    </summary>
-    
-    
-      <category term="数据结构和算法" scheme="https://wmxnlfd.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="LeetCode" scheme="https://wmxnlfd.github.io/tags/LeetCode/"/>
-    
-      <category term="C++" scheme="https://wmxnlfd.github.io/tags/C/"/>
-    
-      <category term="笔试刷题" scheme="https://wmxnlfd.github.io/tags/%E7%AC%94%E8%AF%95%E5%88%B7%E9%A2%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>从零开始的刷LeetCode生活 第38期 391-400</title>
-    <link href="https://wmxnlfd.github.io/2020/02/07/cong-ling-kai-shi-de-shua-leetcode-sheng-huo-di-38-qi-391-400/"/>
-    <id>https://wmxnlfd.github.io/2020/02/07/cong-ling-kai-shi-de-shua-leetcode-sheng-huo-di-38-qi-391-400/</id>
-    <published>2020-02-07T13:37:38.000Z</published>
-    <updated>2020-02-07T13:45:46.199Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;img
-        
-      
-    
-    </summary>
-    
-    
-      <category term="数据结构和算法" scheme="https://wmxnlfd.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="LeetCode" scheme="https://wmxnlfd.github.io/tags/LeetCode/"/>
-    
-      <category term="C++" scheme="https://wmxnlfd.github.io/tags/C/"/>
-    
-      <category term="笔试刷题" scheme="https://wmxnlfd.github.io/tags/%E7%AC%94%E8%AF%95%E5%88%B7%E9%A2%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>从零开始的刷LeetCode生活 第37期 381-390</title>
-    <link href="https://wmxnlfd.github.io/2020/02/06/cong-ling-kai-shi-de-shua-leetcode-sheng-huo-di-37-qi-381-390/"/>
-    <id>https://wmxnlfd.github.io/2020/02/06/cong-ling-kai-shi-de-shua-leetcode-sheng-huo-di-37-qi-381-390/</id>
-    <published>2020-02-06T13:50:35.000Z</published>
-    <updated>2020-02-06T13:51:30.700Z</updated>
     
     <summary type="html">
     
