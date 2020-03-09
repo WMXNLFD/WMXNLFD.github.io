@@ -466,7 +466,7 @@ Dataset">
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1.2k
+                        1.1k
                     </div>
                     
 
@@ -611,42 +611,39 @@ parsed_fields <span class="token operator">=</span> tf<span class="token punctua
  <span class="token comment" spellcheck="true"># 最后一个值为一个向量</span>
  y <span class="token operator">=</span> tf<span class="token punctuation">.</span>stack<span class="token punctuation">(</span>parsed_fields<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
  <span class="token keyword">return</span> x<span class="token punctuation">,</span> y
-</code></pre>
-</li>
+parse_csv_line<span class="token punctuation">(</span>b<span class="token string">'-0.9868720801669367,0.832863080552588,-0.18684708416901633,-0.14888949288707784,-0.4532302419670616,-0.11504995754593579,1.6730974284189664,-0.7465496877362412,1.138'</span><span class="token punctuation">,</span>
+            n_fields<span class="token operator">=</span><span class="token number">9</span><span class="token punctuation">)</span></code></pre>
+<img src="https://img-blog.csdnimg.cn/20200304111906505.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>一个长度为8的向量和一个长度为1的y向量</li>
 </ol>
-<p>parse_csv_line(b’-0.9868720801669367,0.832863080552588,-0.18684708416901633,-0.14888949288707784,-0.4532302419670616,-0.11504995754593579,1.6730974284189664,-0.7465496877362412,1.138’,<br>               n_fields=9)</p>
-<pre><code>![在这里插入图片描述](https://img-blog.csdnimg.cn/20200304111906505.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70)
-一个长度为8的向量和一个长度为1的y向量
-
-转换解析整个csv
-```python
-# 1. filename -&gt; dataset
-# 2. read file -&gt; dataset -&gt; datasets -&gt; merge
-# 3. parse csv
-def csv_reader_dataset(filenames, n_readers=5,
-                       batch_size=32, n_parse_threads=5,
-                       shuffle_buffer_size=10000):
-    #filename -&gt; dataset
-    dataset = tf.data.Dataset.list_files(filenames)
-    dataset = dataset.repeat()
-    # 文件名转化为文本内容
-    dataset = dataset.interleave(
-        lambda filename: tf.data.TextLineDataset(filename).skip(1),
-        cycle_length = n_readers
-    )
-    dataset.shuffle(shuffle_buffer_size)
-    # 一对一
-    dataset = dataset.map(parse_csv_line,
-                          num_parallel_calls=n_parse_threads)
-    dataset = dataset.batch(batch_size)
-    return dataset
-# 每次取出三个结果
-train_set = csv_reader_dataset(train_filenames, batch_size=3)
-for x_batch, y_batch in train_set.take(2):
-    print("x:")
-    pprint.pprint(x_batch)
-    print("y:")
-    pprint.pprint(y_batch)</code></pre><p><img src="https://img-blog.csdnimg.cn/2020030411270387.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200304112809107.png" alt="在这里插入图片描述"><br>定义model进行fit<br>之前的model<br><img src="https://img-blog.csdnimg.cn/20200304112906163.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>转换解析整个csv</p>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 1. filename -> dataset</span>
+<span class="token comment" spellcheck="true"># 2. read file -> dataset -> datasets -> merge</span>
+<span class="token comment" spellcheck="true"># 3. parse csv</span>
+<span class="token keyword">def</span> <span class="token function">csv_reader_dataset</span><span class="token punctuation">(</span>filenames<span class="token punctuation">,</span> n_readers<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">,</span>
+                       batch_size<span class="token operator">=</span><span class="token number">32</span><span class="token punctuation">,</span> n_parse_threads<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">,</span>
+                       shuffle_buffer_size<span class="token operator">=</span><span class="token number">10000</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment" spellcheck="true">#filename -> dataset</span>
+    dataset <span class="token operator">=</span> tf<span class="token punctuation">.</span>data<span class="token punctuation">.</span>Dataset<span class="token punctuation">.</span>list_files<span class="token punctuation">(</span>filenames<span class="token punctuation">)</span>
+    dataset <span class="token operator">=</span> dataset<span class="token punctuation">.</span>repeat<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># 文件名转化为文本内容</span>
+    dataset <span class="token operator">=</span> dataset<span class="token punctuation">.</span>interleave<span class="token punctuation">(</span>
+        <span class="token keyword">lambda</span> filename<span class="token punctuation">:</span> tf<span class="token punctuation">.</span>data<span class="token punctuation">.</span>TextLineDataset<span class="token punctuation">(</span>filename<span class="token punctuation">)</span><span class="token punctuation">.</span>skip<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        cycle_length <span class="token operator">=</span> n_readers
+    <span class="token punctuation">)</span>
+    dataset<span class="token punctuation">.</span>shuffle<span class="token punctuation">(</span>shuffle_buffer_size<span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># 一对一</span>
+    dataset <span class="token operator">=</span> dataset<span class="token punctuation">.</span>map<span class="token punctuation">(</span>parse_csv_line<span class="token punctuation">,</span>
+                          num_parallel_calls<span class="token operator">=</span>n_parse_threads<span class="token punctuation">)</span>
+    dataset <span class="token operator">=</span> dataset<span class="token punctuation">.</span>batch<span class="token punctuation">(</span>batch_size<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> dataset
+<span class="token comment" spellcheck="true"># 每次取出三个结果</span>
+train_set <span class="token operator">=</span> csv_reader_dataset<span class="token punctuation">(</span>train_filenames<span class="token punctuation">,</span> batch_size<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> x_batch<span class="token punctuation">,</span> y_batch <span class="token keyword">in</span> train_set<span class="token punctuation">.</span>take<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"x:"</span><span class="token punctuation">)</span>
+    pprint<span class="token punctuation">.</span>pprint<span class="token punctuation">(</span>x_batch<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"y:"</span><span class="token punctuation">)</span>
+    pprint<span class="token punctuation">.</span>pprint<span class="token punctuation">(</span>y_batch<span class="token punctuation">)</span></code></pre>
+<p><img src="https://img-blog.csdnimg.cn/2020030411270387.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200304112809107.png" alt="在这里插入图片描述"><br>定义model进行fit<br>之前的model<br><img src="https://img-blog.csdnimg.cn/20200304112906163.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <pre class=" language-python"><code class="language-python">model <span class="token operator">=</span> keras<span class="token punctuation">.</span>models<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span><span class="token punctuation">[</span>
     keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">'relu'</span><span class="token punctuation">,</span>
                         <span class="token comment" spellcheck="true">#已知到是长度为8的向量</span>
