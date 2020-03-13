@@ -6,8 +6,8 @@
     <meta charset="utf-8">
     <meta name="keywords" content="【ML&amp;DL学习】17 tf keras separable cnn, 追梦者">
     <meta name="description" content="深度可分离卷积深度可分离卷积是普通卷积操作的变种，可以替代不同卷积，从而构成卷积神经网络。
-对于一个普通卷积，首先进行3*3的卷积操作，在进行批归一化，在经过relu，形成一个完整的卷积层。
-对于深度可分离卷积，首先进行33的深度可分离卷积">
+对于一个普通卷积，首先进行3x3的卷积操作，在进行批归一化，在经过relu，形成一个完整的卷积层。
+对于深度可分离卷积，首先进行3x3的深度可分离卷">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -464,7 +464,7 @@
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        644
+                        643
                     </div>
                     
 
@@ -488,8 +488,8 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="深度可分离卷积"><a href="#深度可分离卷积" class="headerlink" title="深度可分离卷积"></a>深度可分离卷积</h2><p><img src="https://img-blog.csdnimg.cn/2020030515393078.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>深度可分离卷积是普通卷积操作的变种，可以替代不同卷积，从而构成卷积神经网络。</p>
-<p>对于一个普通卷积，首先进行3*3的卷积操作，在进行批归一化，在经过relu，形成一个完整的卷积层。</p>
-<p>对于深度可分离卷积，首先进行3<em>3的深度可分离卷积，在进行批归一化，然后relu，在经过1</em>1的卷积层，在进行批归一化，relu。<br><img src="https://img-blog.csdnimg.cn/20200305154511983.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200305154558905.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>视野域指的是输出单元是和多少个输入单元相关联，对于一个3<em>3的矩阵来说，输出的每个单元，都可以看到输入矩阵中3</em>3的一个区域，对于一个两层的3<em>3卷积，输出可以看到两层之前的输入矩阵中5</em>5的一个方格，这样的区域对应的就是一个视野域。<br><img src="https://img-blog.csdnimg.cn/20200305155641945.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>减小输入，提升效率<br><img src="https://img-blog.csdnimg.cn/20200305155729534.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200305155809453.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200305155831340.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200305160006633.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>对比普通卷积，输入的四个通道都是和输出的四个通道有关系的，而深度可分离卷积，只和输入的某一个通道有关系，从而减小计算量。<br><img src="https://img-blog.csdnimg.cn/20200305161610679.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>Dk代表卷积核大小，Df代表输入图像大小。M是输入通道的数目，N是输出通道的数目（卷积核数目也是输出通道的数目）<br> <img src="https://img-blog.csdnimg.cn/2020030516162484.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br> 计算量很小，使得卷积神经网络可以在手机上运行</p>
+<p>对于一个普通卷积，首先进行3x3的卷积操作，在进行批归一化，在经过relu，形成一个完整的卷积层。</p>
+<p>对于深度可分离卷积，首先进行3x3的深度可分离卷积，在进行批归一化，然后relu，在经过1x1的卷积层，在进行批归一化，relu。<br><img src="https://img-blog.csdnimg.cn/20200305154511983.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200305154558905.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>视野域指的是输出单元是和多少个输入单元相关联，对于一个3x3的矩阵来说，输出的每个单元，都可以看到输入矩阵中3x3的一个区域，对于一个两层的3x3卷积，输出可以看到两层之前的输入矩阵中5x5的一个方格，这样的区域对应的就是一个视野域。<br><img src="https://img-blog.csdnimg.cn/20200305155641945.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>减小输入，提升效率<br><img src="https://img-blog.csdnimg.cn/20200305155729534.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200305155809453.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200305155831340.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200305160006633.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>对比普通卷积，输入的四个通道都是和输出的四个通道有关系的，而深度可分离卷积，只和输入的某一个通道有关系，从而减小计算量。<br><img src="https://img-blog.csdnimg.cn/20200305161610679.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>Dk代表卷积核大小，Df代表输入图像大小。M是输入通道的数目，N是输出通道的数目（卷积核数目也是输出通道的数目）<br> <img src="https://img-blog.csdnimg.cn/2020030516162484.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br> 计算量很小，使得卷积神经网络可以在手机上运行</p>
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><pre class=" language-python"><code class="language-python">model <span class="token operator">=</span> keras<span class="token punctuation">.</span>models<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span><span class="token punctuation">)</span>
 model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Conv2D<span class="token punctuation">(</span>filters<span class="token operator">=</span><span class="token number">32</span><span class="token punctuation">,</span> kernel_size<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span>
                               padding<span class="token operator">=</span><span class="token string">'same'</span><span class="token punctuation">,</span>
@@ -820,8 +820,8 @@ model<span class="token punctuation">.</span>compile<span class="token punctuati
                     <div class="summary block-with-text">
                         
                             深度可分离卷积深度可分离卷积是普通卷积操作的变种，可以替代不同卷积，从而构成卷积神经网络。
-对于一个普通卷积，首先进行3*3的卷积操作，在进行批归一化，在经过relu，形成一个完整的卷积层。
-对于深度可分离卷积，首先进行33的深度可分离卷积
+对于一个普通卷积，首先进行3x3的卷积操作，在进行批归一化，在经过relu，形成一个完整的卷积层。
+对于深度可分离卷积，首先进行3x3的深度可分离卷
                         
                     </div>
                     <div class="publish-info">
