@@ -4,12 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="【ML&amp;DL学习】10 tf diffs and keras regression manu diffs, 追梦者">
-    <meta name="description" content="自定义求导def f(x):
-    return 3. * x ** 2 + 2. * x - 1
-
-def approximate_derivative(f, x, eps=1e-3):
-    #向左移动eps的值 向右移动eps的值">
+    <meta name="keywords" content="【ML&amp;DL学习】17 tf keras separable cnn, 追梦者">
+    <meta name="description" content="深度可分离卷积深度可分离卷积是普通卷积操作的变种，可以替代不同卷积，从而构成卷积神经网络。
+对于一个普通卷积，首先进行3*3的卷积操作，在进行批归一化，在经过relu，形成一个完整的卷积层。
+对于深度可分离卷积，首先进行33的深度可分离卷积">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +15,7 @@ def approximate_derivative(f, x, eps=1e-3):
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>【ML&amp;DL学习】10 tf diffs and keras regression manu diffs | WMXNLFD</title>
+    <title>【ML&amp;DL学习】17 tf keras separable cnn | WMXNLFD</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -315,7 +313,7 @@ def approximate_derivative(f, x, eps=1e-3):
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        【ML&amp;DL学习】10 tf diffs and keras regression manu diffs
+                        【ML&amp;DL学习】17 tf keras separable cnn
                     </div>
                 </div>
             </div>
@@ -459,21 +457,21 @@ def approximate_derivative(f, x, eps=1e-3):
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-08
+                    2020-03-13
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        848
+                        644
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        4 分
+                        2 分
                     </div>
                     
                 
@@ -489,143 +487,42 @@ def approximate_derivative(f, x, eps=1e-3):
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="自定义求导"><a href="#自定义求导" class="headerlink" title="自定义求导"></a>自定义求导</h2><pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">f</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">return</span> <span class="token number">3</span><span class="token punctuation">.</span> <span class="token operator">*</span> x <span class="token operator">**</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">.</span> <span class="token operator">*</span> x <span class="token operator">-</span> <span class="token number">1</span>
-
-<span class="token keyword">def</span> <span class="token function">approximate_derivative</span><span class="token punctuation">(</span>f<span class="token punctuation">,</span> x<span class="token punctuation">,</span> eps<span class="token operator">=</span><span class="token number">1e</span><span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token comment" spellcheck="true">#向左移动eps的值 向右移动eps的值 得到两个点 这两个点的斜率就是在x点的导数近似</span>
-    <span class="token comment" spellcheck="true">#eps 越小 越逼近导数   纵坐标差值 / 横坐标差值</span>
-    <span class="token keyword">return</span> <span class="token punctuation">(</span>f<span class="token punctuation">(</span>x <span class="token operator">+</span> eps<span class="token punctuation">)</span> <span class="token operator">-</span> f<span class="token punctuation">(</span>x <span class="token operator">-</span> eps<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">.</span> <span class="token operator">*</span> eps<span class="token punctuation">)</span>
-
-<span class="token keyword">print</span><span class="token punctuation">(</span>approximate_derivative<span class="token punctuation">(</span>f<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20200303151600619.png" alt="在这里插入图片描述"><br>两个变量求导数</p>
-<pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">g</span><span class="token punctuation">(</span>x1<span class="token punctuation">,</span> x2<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">return</span> <span class="token punctuation">(</span>x1 <span class="token operator">+</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">(</span>x2 <span class="token operator">**</span> <span class="token number">2</span><span class="token punctuation">)</span>
-
-<span class="token keyword">def</span> <span class="token function">approximate_gradient</span><span class="token punctuation">(</span>g<span class="token punctuation">,</span> x1<span class="token punctuation">,</span> x2<span class="token punctuation">,</span> eps<span class="token operator">=</span><span class="token number">1e</span><span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token comment" spellcheck="true"># 固定x2 函数 对x1求导</span>
-    dg_x1 <span class="token operator">=</span> approximate_derivative<span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span> g<span class="token punctuation">(</span>x<span class="token punctuation">,</span> x2<span class="token punctuation">)</span><span class="token punctuation">,</span> x1<span class="token punctuation">,</span> eps<span class="token punctuation">)</span>
-    dg_x2 <span class="token operator">=</span> approximate_derivative<span class="token punctuation">(</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span> g<span class="token punctuation">(</span>x1<span class="token punctuation">,</span> x<span class="token punctuation">)</span><span class="token punctuation">,</span> x2<span class="token punctuation">,</span> eps<span class="token punctuation">)</span>
-    <span class="token keyword">return</span> dg_x1<span class="token punctuation">,</span> dg_x2
-
-<span class="token keyword">print</span><span class="token punctuation">(</span>approximate_gradient<span class="token punctuation">(</span>g<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">.</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
-<p><strong>TensorFlow自动求导</strong></p>
-<pre class=" language-python"><code class="language-python">x1 <span class="token operator">=</span> tf<span class="token punctuation">.</span>Variable<span class="token punctuation">(</span><span class="token number">2.0</span><span class="token punctuation">)</span>
-x2 <span class="token operator">=</span> tf<span class="token punctuation">.</span>Variable<span class="token punctuation">(</span><span class="token number">3.0</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 导数求解</span>
-<span class="token keyword">with</span> tf<span class="token punctuation">.</span>GradientTape<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> tape<span class="token punctuation">:</span>
-    z <span class="token operator">=</span> g<span class="token punctuation">(</span>x1<span class="token punctuation">,</span> x2<span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true">#                  函数输出和变量</span>
-dz_x1 <span class="token operator">=</span> tape<span class="token punctuation">.</span>gradient<span class="token punctuation">(</span>z<span class="token punctuation">,</span> x1<span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>dz_x1<span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># tape 只能调用一次 调用完会被消解释放</span>
-<span class="token keyword">try</span><span class="token punctuation">:</span>
-    dz_x2 <span class="token operator">=</span> tape<span class="token punctuation">.</span>gradient<span class="token punctuation">(</span>z<span class="token punctuation">,</span> x2<span class="token punctuation">)</span>
-<span class="token keyword">except</span> RuntimeError <span class="token keyword">as</span> ex<span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span>ex<span class="token punctuation">)</span></code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20200303154511102.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<pre class=" language-python"><code class="language-python">x1 <span class="token operator">=</span> tf<span class="token punctuation">.</span>Variable<span class="token punctuation">(</span><span class="token number">2.0</span><span class="token punctuation">)</span>
-x2 <span class="token operator">=</span> tf<span class="token punctuation">.</span>Variable<span class="token punctuation">(</span><span class="token number">3.0</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 声明可以保存</span>
-<span class="token keyword">with</span> tf<span class="token punctuation">.</span>GradientTape<span class="token punctuation">(</span>persistent <span class="token operator">=</span> <span class="token boolean">True</span><span class="token punctuation">)</span> <span class="token keyword">as</span> tape<span class="token punctuation">:</span>
-    z <span class="token operator">=</span> g<span class="token punctuation">(</span>x1<span class="token punctuation">,</span> x2<span class="token punctuation">)</span>
-
-dz_x1 <span class="token operator">=</span> tape<span class="token punctuation">.</span>gradient<span class="token punctuation">(</span>z<span class="token punctuation">,</span> x1<span class="token punctuation">)</span>
-dz_x2 <span class="token operator">=</span> tape<span class="token punctuation">.</span>gradient<span class="token punctuation">(</span>z<span class="token punctuation">,</span> x2<span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>dz_x1<span class="token punctuation">,</span> dz_x2<span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 使用完删掉</span>
-<span class="token keyword">del</span> tape</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20200303154750142.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>同时求x1，x2偏导<br><img src="https://img-blog.csdnimg.cn/20200303154841436.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200303155007630.png" alt="在这里插入图片描述"><br>可以通过一些变量来观测constant的导数<br><img src="https://img-blog.csdnimg.cn/20200303155120153.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>两个函数对同一个变量求导<br><img src="https://img-blog.csdnimg.cn/20200303155230975.png" alt="在这里插入图片描述"><br>计算出的是 两个函数在x点的导数和</p>
-<p>求二阶导数</p>
-<pre class=" language-python"><code class="language-python">x1 <span class="token operator">=</span> tf<span class="token punctuation">.</span>Variable<span class="token punctuation">(</span><span class="token number">2.0</span><span class="token punctuation">)</span>
-x2 <span class="token operator">=</span> tf<span class="token punctuation">.</span>Variable<span class="token punctuation">(</span><span class="token number">3.0</span><span class="token punctuation">)</span>
-<span class="token keyword">with</span> tf<span class="token punctuation">.</span>GradientTape<span class="token punctuation">(</span>persistent<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span> <span class="token keyword">as</span> outer_tape<span class="token punctuation">:</span>
-    <span class="token keyword">with</span> tf<span class="token punctuation">.</span>GradientTape<span class="token punctuation">(</span>persistent<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span> <span class="token keyword">as</span> inner_tape<span class="token punctuation">:</span>
-        z <span class="token operator">=</span> g<span class="token punctuation">(</span>x1<span class="token punctuation">,</span> x2<span class="token punctuation">)</span>
-    inner_grads <span class="token operator">=</span> inner_tape<span class="token punctuation">.</span>gradient<span class="token punctuation">(</span>z<span class="token punctuation">,</span> <span class="token punctuation">[</span>x1<span class="token punctuation">,</span> x2<span class="token punctuation">]</span><span class="token punctuation">)</span>
-outer_grads <span class="token operator">=</span> <span class="token punctuation">[</span>outer_tape<span class="token punctuation">.</span>gradient<span class="token punctuation">(</span>inner_grad<span class="token punctuation">,</span> <span class="token punctuation">[</span>x1<span class="token punctuation">,</span> x2<span class="token punctuation">]</span><span class="token punctuation">)</span>
-               <span class="token keyword">for</span> inner_grad <span class="token keyword">in</span> inner_grads<span class="token punctuation">]</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>outer_grads<span class="token punctuation">)</span>
-<span class="token keyword">del</span> inner_tape
-<span class="token keyword">del</span> outer_tape</code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20200303155512589.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>得出的是一个2*2 的矩阵    左上角 是z对x1的二阶导，右上角是z先对x2求导在对x1求导，左下角是z先对x1求导再对x2求导，右下角是z对x2的二阶导。</p>
-<pre class=" language-python"><code class="language-python">learning_rate <span class="token operator">=</span> <span class="token number">0.1</span>
-x <span class="token operator">=</span> tf<span class="token punctuation">.</span>Variable<span class="token punctuation">(</span><span class="token number">0.0</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 循环100步</span>
-<span class="token keyword">for</span> _ <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">with</span> tf<span class="token punctuation">.</span>GradientTape<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> tape<span class="token punctuation">:</span>
-        z <span class="token operator">=</span> f<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true"># 进行求导</span>
-    dz_dx <span class="token operator">=</span> tape<span class="token punctuation">.</span>gradient<span class="token punctuation">(</span>z<span class="token punctuation">,</span> x<span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true"># 更新 x - lr * dz_dx</span>
-    x<span class="token punctuation">.</span>assign_sub<span class="token punctuation">(</span>learning_rate <span class="token operator">*</span> dz_dx<span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span></code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20200303160141463.png" alt="在这里插入图片描述"><br>结合optimizer 求导<br><img src="https://img-blog.csdnimg.cn/20200303160254114.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="使用自定义梯度求解问题"><a href="#使用自定义梯度求解问题" class="headerlink" title="使用自定义梯度求解问题"></a>使用自定义梯度求解问题</h2><p><img src="https://img-blog.csdnimg.cn/20200303160646198.png" alt="在这里插入图片描述"><br>需要修改model.fit部分的代码</p>
-<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># metric使用</span>
-<span class="token comment" spellcheck="true"># 均方差</span>
-metric <span class="token operator">=</span> keras<span class="token punctuation">.</span>metrics<span class="token punctuation">.</span>MeanSquaredError<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 输入是两个列表</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>metric<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">.</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">.</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true">#metric 有累加功能 第一个9 第二个1 平均之后是5</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>metric<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">.</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">.</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>metric<span class="token punctuation">.</span>result<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># metric不累加数据</span>
-metric<span class="token punctuation">.</span>reset_states<span class="token punctuation">(</span><span class="token punctuation">)</span>
-metric<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">.</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">.</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>metric<span class="token punctuation">.</span>result<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20200303161109400.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># fit函数做的事</span>
-<span class="token comment" spellcheck="true"># 1. batch 遍历训练集 metric</span>
-<span class="token comment" spellcheck="true">#    1.1 自动求导</span>
-<span class="token comment" spellcheck="true"># 2. epoch结束 验证集 metric</span>
-<span class="token comment" spellcheck="true">#定义变量 遍历多少次</span>
-epochs <span class="token operator">=</span> <span class="token number">100</span>
-batch_size <span class="token operator">=</span> <span class="token number">32</span>
-<span class="token comment" spellcheck="true">#每个epoch 需要训练多少次</span>
-steps_per_epoch <span class="token operator">=</span> len<span class="token punctuation">(</span>x_train_scaled<span class="token punctuation">)</span> <span class="token operator">//</span> batch_size
-optimizer <span class="token operator">=</span> keras<span class="token punctuation">.</span>optimizers<span class="token punctuation">.</span>SGD<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 度量 评估方式</span>
-metric <span class="token operator">=</span> keras<span class="token punctuation">.</span>metrics<span class="token punctuation">.</span>MeanSquaredError<span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 随机取32个样本</span>
-<span class="token keyword">def</span> <span class="token function">random_batch</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> batch_size<span class="token operator">=</span><span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    idx <span class="token operator">=</span> np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> len<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span> size<span class="token operator">=</span>batch_size<span class="token punctuation">)</span>
-    <span class="token keyword">return</span> x<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token punctuation">,</span> y<span class="token punctuation">[</span>idx<span class="token punctuation">]</span>
-
-model <span class="token operator">=</span> keras<span class="token punctuation">.</span>models<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span><span class="token punctuation">[</span>
-    keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">'relu'</span><span class="token punctuation">,</span>
-                       input_shape<span class="token operator">=</span>x_train<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-<span class="token punctuation">]</span><span class="token punctuation">)</span>
-
-<span class="token keyword">for</span> epoch <span class="token keyword">in</span> range<span class="token punctuation">(</span>epochs<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token comment" spellcheck="true"># metric不累加数据</span>
-    metric<span class="token punctuation">.</span>reset_states<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true"># 循环遍历数据</span>
-    <span class="token keyword">for</span> step <span class="token keyword">in</span> range<span class="token punctuation">(</span>steps_per_epoch<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token comment" spellcheck="true"># 取出数据</span>
-        x_batch<span class="token punctuation">,</span> y_batch <span class="token operator">=</span> random_batch<span class="token punctuation">(</span>x_train_scaled<span class="token punctuation">,</span> y_train<span class="token punctuation">,</span>
-                                        batch_size<span class="token punctuation">)</span>
-        <span class="token comment" spellcheck="true"># 手动计算求梯度</span>
-        <span class="token keyword">with</span> tf<span class="token punctuation">.</span>GradientTape<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">as</span> tape<span class="token punctuation">:</span>
-            y_pred <span class="token operator">=</span> model<span class="token punctuation">(</span>x_batch<span class="token punctuation">)</span>
-            y_pred <span class="token operator">=</span> tf<span class="token punctuation">.</span>squeeze<span class="token punctuation">(</span>y_pred<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
-            loss <span class="token operator">=</span> keras<span class="token punctuation">.</span>losses<span class="token punctuation">.</span>mean_squared_error<span class="token punctuation">(</span>y_batch<span class="token punctuation">,</span> y_pred<span class="token punctuation">)</span>
-            metric<span class="token punctuation">(</span>y_batch<span class="token punctuation">,</span> y_pred<span class="token punctuation">)</span>
-        <span class="token comment" spellcheck="true"># 更新梯度</span>
-        grads <span class="token operator">=</span> tape<span class="token punctuation">.</span>gradient<span class="token punctuation">(</span>loss<span class="token punctuation">,</span> model<span class="token punctuation">.</span>variables<span class="token punctuation">)</span>
-        grads_and_vars <span class="token operator">=</span> zip<span class="token punctuation">(</span>grads<span class="token punctuation">,</span> model<span class="token punctuation">.</span>variables<span class="token punctuation">)</span>
-        optimizer<span class="token punctuation">.</span>apply_gradients<span class="token punctuation">(</span>grads_and_vars<span class="token punctuation">)</span>
-        <span class="token comment" spellcheck="true">#打印运行结果</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"\rEpoch"</span><span class="token punctuation">,</span> epoch<span class="token punctuation">,</span> <span class="token string">" train mse:"</span><span class="token punctuation">,</span>
-              metric<span class="token punctuation">.</span>result<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">)</span>
-    <span class="token comment" spellcheck="true"># 验证</span>
-    y_valid_pred <span class="token operator">=</span> model<span class="token punctuation">(</span>x_valid_scaled<span class="token punctuation">)</span>
-    y_valid_pred <span class="token operator">=</span> tf<span class="token punctuation">.</span>squeeze<span class="token punctuation">(</span>y_valid_pred<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
-    valid_loss <span class="token operator">=</span> keras<span class="token punctuation">.</span>losses<span class="token punctuation">.</span>mean_squared_error<span class="token punctuation">(</span>y_valid_pred<span class="token punctuation">,</span> y_valid<span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"\t"</span><span class="token punctuation">,</span> <span class="token string">"valid mse: "</span><span class="token punctuation">,</span> valid_loss<span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
-<p>训练<br><img src="https://img-blog.csdnimg.cn/20200303163855248.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="https://img-blog.csdnimg.cn/20200303163818939.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+                <h2 id="深度可分离卷积"><a href="#深度可分离卷积" class="headerlink" title="深度可分离卷积"></a>深度可分离卷积</h2><p><img src="https://img-blog.csdnimg.cn/2020030515393078.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>深度可分离卷积是普通卷积操作的变种，可以替代不同卷积，从而构成卷积神经网络。</p>
+<p>对于一个普通卷积，首先进行3*3的卷积操作，在进行批归一化，在经过relu，形成一个完整的卷积层。</p>
+<p>对于深度可分离卷积，首先进行3<em>3的深度可分离卷积，在进行批归一化，然后relu，在经过1</em>1的卷积层，在进行批归一化，relu。<br><img src="https://img-blog.csdnimg.cn/20200305154511983.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200305154558905.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>视野域指的是输出单元是和多少个输入单元相关联，对于一个3<em>3的矩阵来说，输出的每个单元，都可以看到输入矩阵中3</em>3的一个区域，对于一个两层的3<em>3卷积，输出可以看到两层之前的输入矩阵中5</em>5的一个方格，这样的区域对应的就是一个视野域。<br><img src="https://img-blog.csdnimg.cn/20200305155641945.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>减小输入，提升效率<br><img src="https://img-blog.csdnimg.cn/20200305155729534.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200305155809453.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200305155831340.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200305160006633.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>对比普通卷积，输入的四个通道都是和输出的四个通道有关系的，而深度可分离卷积，只和输入的某一个通道有关系，从而减小计算量。<br><img src="https://img-blog.csdnimg.cn/20200305161610679.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>Dk代表卷积核大小，Df代表输入图像大小。M是输入通道的数目，N是输出通道的数目（卷积核数目也是输出通道的数目）<br> <img src="https://img-blog.csdnimg.cn/2020030516162484.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br> 计算量很小，使得卷积神经网络可以在手机上运行</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><pre class=" language-python"><code class="language-python">model <span class="token operator">=</span> keras<span class="token punctuation">.</span>models<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Conv2D<span class="token punctuation">(</span>filters<span class="token operator">=</span><span class="token number">32</span><span class="token punctuation">,</span> kernel_size<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span>
+                              padding<span class="token operator">=</span><span class="token string">'same'</span><span class="token punctuation">,</span>
+                              activation<span class="token operator">=</span><span class="token string">'selu'</span><span class="token punctuation">,</span>
+                              input_shape<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">28</span><span class="token punctuation">,</span> <span class="token number">28</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                       <span class="token comment" spellcheck="true">#深度可分离卷积</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>SeparableConv2D<span class="token punctuation">(</span>filters<span class="token operator">=</span><span class="token number">32</span><span class="token punctuation">,</span> kernel_size<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span>
+                                       padding<span class="token operator">=</span><span class="token string">'same'</span><span class="token punctuation">,</span>
+                                       activation<span class="token operator">=</span><span class="token string">'selu'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>MaxPool2D<span class="token punctuation">(</span>pool_size<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>SeparableConv2D<span class="token punctuation">(</span>filters<span class="token operator">=</span><span class="token number">64</span><span class="token punctuation">,</span> kernel_size<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span>
+                                       padding<span class="token operator">=</span><span class="token string">'same'</span><span class="token punctuation">,</span>
+                                       activation<span class="token operator">=</span><span class="token string">'selu'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>SeparableConv2D<span class="token punctuation">(</span>filters<span class="token operator">=</span><span class="token number">64</span><span class="token punctuation">,</span> kernel_size<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span>
+                                       padding<span class="token operator">=</span><span class="token string">'same'</span><span class="token punctuation">,</span>
+                                       activation<span class="token operator">=</span><span class="token string">'selu'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>MaxPool2D<span class="token punctuation">(</span>pool_size<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>SeparableConv2D<span class="token punctuation">(</span>filters<span class="token operator">=</span><span class="token number">128</span><span class="token punctuation">,</span> kernel_size<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span>
+                                       padding<span class="token operator">=</span><span class="token string">'same'</span><span class="token punctuation">,</span>
+                                       activation<span class="token operator">=</span><span class="token string">'selu'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>SeparableConv2D<span class="token punctuation">(</span>filters<span class="token operator">=</span><span class="token number">128</span><span class="token punctuation">,</span> kernel_size<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span>
+                                       padding<span class="token operator">=</span><span class="token string">'same'</span><span class="token punctuation">,</span>
+                                       activation<span class="token operator">=</span><span class="token string">'selu'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>MaxPool2D<span class="token punctuation">(</span>pool_size<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Flatten<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">'selu'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">"softmax"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>compile<span class="token punctuation">(</span>loss<span class="token operator">=</span><span class="token string">"sparse_categorical_crossentropy"</span><span class="token punctuation">,</span>
+              optimizer <span class="token operator">=</span> <span class="token string">"sgd"</span><span class="token punctuation">,</span>
+              metrics <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"accuracy"</span><span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200305162257638.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>参数减小了</p>
+<p>训练<br><img src="https://img-blog.csdnimg.cn/20200305162643397.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>学习曲线<br><img src="https://img-blog.csdnimg.cn/20200305162701149.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>可以发现迭代第二次后loss开始下降了，accuracy往上升，说明只要经过长时间的训练，模型可以达到一个好的效果。</p>
+<p>测试<br><img src="https://img-blog.csdnimg.cn/20200305162822331.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>以精度损失为代价，换取计算量的减小和参数量的减小。</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -669,7 +566,7 @@ model <span class="token operator">=</span> keras<span class="token punctuation"
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wmxnlfd.github.io/2020/03/08/ml-dl-xue-xi-10-tf-diffs-and-keras-regression-manu-diffs/">https://wmxnlfd.github.io/2020/03/08/ml-dl-xue-xi-10-tf-diffs-and-keras-regression-manu-diffs/</a>
+                    <a href="https://wmxnlfd.github.io/2020/03/13/ml-dl-xue-xi-17-tf-keras-separable-cnn/">https://wmxnlfd.github.io/2020/03/13/ml-dl-xue-xi-17-tf-keras-separable-cnn/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -884,7 +781,7 @@ model <span class="token operator">=</span> keras<span class="token punctuation"
         repo: 'wmxnlfd.github.io',
         owner: 'wmxnlfd',
         admin: "wmxnlfd",
-        id: '2020-03-08T20-36-52',
+        id: '2020-03-13T19-53-24',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -905,59 +802,58 @@ model <span class="token operator">=</span> keras<span class="token punctuation"
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/03/08/cong-ling-kai-shi-de-shua-leetcode-sheng-huo-di-48-qi-516-520/">
+                <a href="/2020/03/13/ml-dl-xue-xi-17-tf-keras-separable-cnn/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="从零开始的刷LeetCode生活 第48期 516-520">
+                        <img src="/medias/featureimages/27.jpg" class="responsive-img" alt="【ML&DL学习】17 tf keras separable cnn">
                         
-                        <span class="card-title">从零开始的刷LeetCode生活 第48期 516-520</span>
+                        <span class="card-title">【ML&DL学习】17 tf keras separable cnn</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-class Solution {
-public:
-    int longestPalindromeSubseq(string s) {
-        int n = s.size();
-        vector&lt;vector
+                            深度可分离卷积深度可分离卷积是普通卷积操作的变种，可以替代不同卷积，从而构成卷积神经网络。
+对于一个普通卷积，首先进行3*3的卷积操作，在进行批归一化，在经过relu，形成一个完整的卷积层。
+对于深度可分离卷积，首先进行33的深度可分离卷积
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-08
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-13
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" class="post-category">
-                                    数据结构和算法
+                            <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    机器学习和深度学习
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/LeetCode/">
-                        <span class="chip bg-color">LeetCode</span>
+                    <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">机器学习</span>
                     </a>
                     
-                    <a href="/tags/C/">
-                        <span class="chip bg-color">C++</span>
+                    <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">深度学习</span>
                     </a>
                     
-                    <a href="/tags/%E7%AC%94%E8%AF%95%E5%88%B7%E9%A2%98/">
-                        <span class="chip bg-color">笔试刷题</span>
+                    <a href="/tags/TensorFlow/">
+                        <span class="chip bg-color">TensorFlow</span>
                     </a>
                     
                 </div>
@@ -971,25 +867,24 @@ public:
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/03/08/ml-dl-xue-xi-9-tf-function-and-auto-graph/">
+                <a href="/2020/03/12/ml-dl-xue-xi-16-tf-keras-cnn-selu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="【ML&DL学习】9 tf function and auto graph">
+                        <img src="/medias/featureimages/27.jpg" class="responsive-img" alt="【ML&DL学习】16 tf keras cnn selu">
                         
-                        <span class="card-title">【ML&DL学习】9 tf function and auto graph</span>
+                        <span class="card-title">【ML&DL学习】16 tf keras cnn selu</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            tf.function把普通python语法写的函数或者代码变成TensorFlow里面的图auto-graph 是tf.function所依赖的一个机制，这种机制可以把python语法的东西变成TensorFlow里面的图
-# tf.fu
+                            卷积神经网络全连接层在卷积层和池化层的后面，因为卷积层的输入和输出是一个多维的矩阵，而全连接层的输入和输出是一个多维的向量，所以在卷积层和全连接层的连接点上，需要做一个操作，就是把卷积的输出给展平，展平涉及维度信息，全连接层无法将维度信息给
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-12
                             </span>
                         <span class="publish-author">
                             
