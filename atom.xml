@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wmxnlfd.github.io/"/>
-  <updated>2020-03-14T13:59:02.374Z</updated>
+  <updated>2020-03-16T13:20:07.034Z</updated>
   <id>https://wmxnlfd.github.io/</id>
   
   <author>
@@ -15,6 +15,68 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【ML&amp;DL学习】19 rnn embedding padding pooling</title>
+    <link href="https://wmxnlfd.github.io/2020/03/16/ml-dl-xue-xi-19-rnn-embedding-padding-pooling/"/>
+    <id>https://wmxnlfd.github.io/2020/03/16/ml-dl-xue-xi-19-rnn-embedding-padding-pooling/</id>
+    <published>2020-03-16T13:18:06.000Z</published>
+    <updated>2020-03-16T13:20:07.034Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;循环神经网络&quot;&gt;&lt;a href=&quot;#循环神经网络&quot; class=&quot;headerlink&quot; title=&quot;循环神经网络&quot;&gt;&lt;/a&gt;循环神经网络&lt;/h2&gt;&lt;p&gt;nlp领域并不可少的一个网络&lt;br&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+    
+      <category term="机器学习和深度学习" scheme="https://wmxnlfd.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="机器学习" scheme="https://wmxnlfd.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="深度学习" scheme="https://wmxnlfd.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="TensorFlow" scheme="https://wmxnlfd.github.io/tags/TensorFlow/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【ML&amp;DL学习】18 kaggle 10 monkeys model and resnet50 finetune</title>
+    <link href="https://wmxnlfd.github.io/2020/03/16/ml-dl-xue-xi-18-kaggle-10-monkeys-model-and-resnet50-finetune/"/>
+    <id>https://wmxnlfd.github.io/2020/03/16/ml-dl-xue-xi-18-kaggle-10-monkeys-model-and-resnet50-finetune/</id>
+    <published>2020-03-16T13:17:23.000Z</published>
+    <updated>2020-03-16T13:19:40.162Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+    
+      <category term="机器学习和深度学习" scheme="https://wmxnlfd.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="机器学习" scheme="https://wmxnlfd.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="深度学习" scheme="https://wmxnlfd.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="TensorFlow" scheme="https://wmxnlfd.github.io/tags/TensorFlow/"/>
+    
+  </entry>
   
   <entry>
     <title>从零开始的刷LeetCode生活 第50期 538-556</title>
@@ -572,70 +634,6 @@
       <category term="C++" scheme="https://wmxnlfd.github.io/tags/C/"/>
     
       <category term="笔试刷题" scheme="https://wmxnlfd.github.io/tags/%E7%AC%94%E8%AF%95%E5%88%B7%E9%A2%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【ML&amp;DL学习】3 tf keras classification model callbacks</title>
-    <link href="https://wmxnlfd.github.io/2020/03/01/ml-dl-xue-xi-3-tf-keras-classification-model-callbacks/"/>
-    <id>https://wmxnlfd.github.io/2020/03/01/ml-dl-xue-xi-3-tf-keras-classification-model-callbacks/</id>
-    <published>2020-03-01T03:17:28.000Z</published>
-    <updated>2020-03-01T03:19:34.557Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;下面学习一下如何在tf keras使用回调函数&lt;br&gt;&lt;img
-        
-      
-    
-    </summary>
-    
-    
-      <category term="机器学习和深度学习" scheme="https://wmxnlfd.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="机器学习" scheme="https://wmxnlfd.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="深度学习" scheme="https://wmxnlfd.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="TensorFlow" scheme="https://wmxnlfd.github.io/tags/TensorFlow/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【ML&amp;DL学习】2 tf keras classification model normalize</title>
-    <link href="https://wmxnlfd.github.io/2020/03/01/ml-dl-xue-xi-2-tf-keras-classification-model-normalize/"/>
-    <id>https://wmxnlfd.github.io/2020/03/01/ml-dl-xue-xi-2-tf-keras-classification-model-normalize/</id>
-    <published>2020-03-01T03:16:28.000Z</published>
-    <updated>2020-03-01T03:18:38.514Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;上次讲到了需要对输入数据进行归一化，那么现在来看看怎么进行归一化吧！&lt;/p&gt;
-&lt;p&gt;打印训练值中的最大值和最小值&lt;/p&gt;
-&lt;pre class=&quot; language-python&quot;&gt;&lt;code class=&quot;language-python&quot;&gt;&lt;span
-        
-      
-    
-    </summary>
-    
-    
-      <category term="机器学习和深度学习" scheme="https://wmxnlfd.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="机器学习" scheme="https://wmxnlfd.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="深度学习" scheme="https://wmxnlfd.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="TensorFlow" scheme="https://wmxnlfd.github.io/tags/TensorFlow/"/>
     
   </entry>
   

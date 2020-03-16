@@ -4,16 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="【ML&amp;DL学习】7 tf basic api, 追梦者">
-    <meta name="description" content="基础API常量
-# 定义常量 定义二位矩阵 并初始化
-t = tf.constant([[1., 2., 3.], [4., 5., 6.]])
-
-# index
-print(t)
-# 取出第二列以后的数据
-print(t[:, 1:])
-">
+    <meta name="keywords" content="【ML&amp;DL学习】19 rnn embedding padding pooling, 追梦者">
+    <meta name="description" content="循环神经网络nlp领域并不可少的一个网络Embedding是神经网络应用到nlp领域一个关键的步骤，他可以把词语转换为数字，从而让神经网络可以读取。
+embedding与变长输入处理使用one-hot编码的embedding。在nlp领域e">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +14,7 @@ print(t[:, 1:])
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>【ML&amp;DL学习】7 tf basic api | WMXNLFD</title>
+    <title>【ML&amp;DL学习】19 rnn embedding padding pooling | WMXNLFD</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -313,13 +306,13 @@ print(t[:, 1:])
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        【ML&amp;DL学习】7 tf basic api
+                        【ML&amp;DL学习】19 rnn embedding padding pooling
                     </div>
                 </div>
             </div>
@@ -463,21 +456,21 @@ print(t[:, 1:])
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-06
+                    2020-03-16
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        456
+                        1.1k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        2 分
+                        4 分
                     </div>
                     
                 
@@ -493,83 +486,98 @@ print(t[:, 1:])
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="基础API"><a href="#基础API" class="headerlink" title="基础API"></a>基础API</h2><p><img src="https://img-blog.csdnimg.cn/20200303090936891.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>常量</p>
-<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 定义常量 定义二位矩阵 并初始化</span>
-t <span class="token operator">=</span> tf<span class="token punctuation">.</span>constant<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">.</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">.</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">.</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">.</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">.</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">.</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+                <h2 id="循环神经网络"><a href="#循环神经网络" class="headerlink" title="循环神经网络"></a>循环神经网络</h2><p>nlp领域并不可少的一个网络<br><img src="https://img-blog.csdnimg.cn/20200312144009414.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>Embedding是神经网络应用到nlp领域一个关键的步骤，他可以把词语转换为数字，从而让神经网络可以读取。<br><img src="https://img-blog.csdnimg.cn/20200312152017220.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="embedding与变长输入处理"><a href="#embedding与变长输入处理" class="headerlink" title="embedding与变长输入处理"></a>embedding与变长输入处理</h2><p><img src="https://img-blog.csdnimg.cn/2020031215220415.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>使用one-hot编码的embedding。在nlp领域embedding使用很广泛的是dense embedding，词语对应的索引不再是稀疏向量，而是密集向量。</p>
+<h2 id="处理变长输入的方法"><a href="#处理变长输入的方法" class="headerlink" title="处理变长输入的方法"></a>处理变长输入的方法</h2><p><img src="https://img-blog.csdnimg.cn/20200312152301495.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>长度不够填充0。长度过长截断。<br><img src="https://img-blog.csdnimg.cn/20200312152344212.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="导入数据-imdb电影评价数据"><a href="#导入数据-imdb电影评价数据" class="headerlink" title="导入数据 imdb电影评价数据"></a>导入数据 imdb电影评价数据</h2><pre class=" language-python"><code class="language-python">imdb <span class="token operator">=</span> keras<span class="token punctuation">.</span>datasets<span class="token punctuation">.</span>imdb
+vocab_size <span class="token operator">=</span> <span class="token number">10000</span>
+index_from <span class="token operator">=</span> <span class="token number">3</span>
+<span class="token punctuation">(</span>train_data<span class="token punctuation">,</span> train_labels<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>test_data<span class="token punctuation">,</span> test_labels<span class="token punctuation">)</span> <span class="token operator">=</span> imdb<span class="token punctuation">.</span>load_data<span class="token punctuation">(</span>
+    num_words <span class="token operator">=</span> vocab_size<span class="token punctuation">,</span> index_from <span class="token operator">=</span> index_from<span class="token punctuation">)</span></code></pre>
+<h2 id="查看数据"><a href="#查看数据" class="headerlink" title="查看数据"></a>查看数据</h2><pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 查看第一个样本</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>train_data<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> train_labels<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>train_data<span class="token punctuation">.</span>shape<span class="token punctuation">,</span> train_labels<span class="token punctuation">.</span>shape<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>len<span class="token punctuation">(</span>train_data<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> len<span class="token punctuation">(</span>train_data<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200312212300708.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>对于每一个train data，每一个样本都是一个向量，对于train label来说，每一个样本对应一个值，他们的shape是25000，train data，第二维度不定长，所以没有给出，<br>可以看出第一，第二样本是不定长的，一个为218，一个为189.</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span>test_data<span class="token punctuation">.</span>shape<span class="token punctuation">,</span> test_labels<span class="token punctuation">.</span>shape<span class="token punctuation">)</span></code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200312212314353.png" alt="在这里插入图片描述"></p>
+<h2 id="查看词表"><a href="#查看词表" class="headerlink" title="查看词表"></a>查看词表</h2><pre class=" language-python"><code class="language-python">word_index <span class="token operator">=</span> imdb<span class="token punctuation">.</span>get_word_index<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>len<span class="token punctuation">(</span>word_index<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>word_index<span class="token punctuation">)</span></code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200312212851833.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>词表大小是八万八，key-val的形式，key对应具体词语，val对应词语id，上面设置idex from是3，所以词语偏移需要3。</p>
+<p>词语id偏移3，变成对的id。</p>
+<pre class=" language-python"><code class="language-python">word_index <span class="token operator">=</span> <span class="token punctuation">{</span>k<span class="token punctuation">:</span><span class="token punctuation">(</span>v<span class="token operator">+</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token keyword">for</span> k<span class="token punctuation">,</span> v <span class="token keyword">in</span> word_index<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span></code></pre>
+<p>特殊搜索索引</p>
+<pre class=" language-python"><code class="language-python">word_index<span class="token punctuation">[</span><span class="token string">'&lt;PAD>'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span>
+word_index<span class="token punctuation">[</span><span class="token string">'&lt;START>'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span>
+word_index<span class="token punctuation">[</span><span class="token string">'&lt;UNK>'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">2</span>
+word_index<span class="token punctuation">[</span><span class="token string">'&lt;END>'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">3</span>
+<span class="token comment" spellcheck="true"># 反向word - index</span>
+reverse_word_index <span class="token operator">=</span> dict<span class="token punctuation">(</span>
+    <span class="token punctuation">[</span><span class="token punctuation">(</span>value<span class="token punctuation">,</span> key<span class="token punctuation">)</span> <span class="token keyword">for</span> key<span class="token punctuation">,</span> value <span class="token keyword">in</span> word_index<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 把train data里面的数字组合成文本</span>
+<span class="token keyword">def</span> <span class="token function">decode_review</span><span class="token punctuation">(</span>text_ids<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token string">' '</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>
+        <span class="token punctuation">[</span>reverse_word_index<span class="token punctuation">.</span>get<span class="token punctuation">(</span>word_id<span class="token punctuation">,</span> <span class="token string">"&lt;UNK>"</span><span class="token punctuation">)</span> <span class="token keyword">for</span> word_id <span class="token keyword">in</span> text_ids<span class="token punctuation">]</span><span class="token punctuation">)</span>
+decode_review<span class="token punctuation">(</span>train_data<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200312213532426.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>成功解析为文本！</p>
+<h2 id="数据补全"><a href="#数据补全" class="headerlink" title="数据补全"></a>数据补全</h2><pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true">#长度低于500的会被补全，高于500的会被截断</span>
+max_length <span class="token operator">=</span> <span class="token number">500</span>
+train_data <span class="token operator">=</span> keras<span class="token punctuation">.</span>preprocessing<span class="token punctuation">.</span>sequence<span class="token punctuation">.</span>pad_sequences<span class="token punctuation">(</span>
+    train_data<span class="token punctuation">,</span> <span class="token comment" spellcheck="true"># list of list</span>
+    value <span class="token operator">=</span> word_index<span class="token punctuation">[</span><span class="token string">'&lt;PAD>'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">#添加上面定义pad 的值</span>
+    padding <span class="token operator">=</span> <span class="token string">'post'</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true"># post把padding放在后面, pre</span>
+    maxlen <span class="token operator">=</span> max_length<span class="token punctuation">)</span>
 
-<span class="token comment" spellcheck="true"># index</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 取出第二列以后的数据</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>t<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 取出第二列的数据</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>t<span class="token punctuation">[</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20200303093717611.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># ops</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>t<span class="token operator">+</span><span class="token number">10</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 平方操作</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>tf<span class="token punctuation">.</span>square<span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 矩阵乘以矩阵的转置 2*3 x 3*2 = 2*2</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>t @ tf<span class="token punctuation">.</span>transpose<span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20200303093757149.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># numpy conversion</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>np<span class="token punctuation">.</span>square<span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">)</span>
-np_t <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">.</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">.</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">.</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">.</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">.</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">.</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># numpy tensor 的转换</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>tf<span class="token punctuation">.</span>constant<span class="token punctuation">(</span>np_t<span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20200303094200335.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>标量<br><img src="https://img-blog.csdnimg.cn/20200303094406214.png" alt="在这里插入图片描述"></p>
-<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># strings</span>
-t <span class="token operator">=</span> tf<span class="token punctuation">.</span>constant<span class="token punctuation">(</span><span class="token string">"cafe"</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 获得字符串长度</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>tf<span class="token punctuation">.</span>strings<span class="token punctuation">.</span>length<span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 获得utf8编码的长度</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>tf<span class="token punctuation">.</span>strings<span class="token punctuation">.</span>length<span class="token punctuation">(</span>t<span class="token punctuation">,</span> unit<span class="token operator">=</span><span class="token string">"UTF8_CHAR"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 把字符串从unicode 转化为 utf8编码</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>tf<span class="token punctuation">.</span>strings<span class="token punctuation">.</span>unicode_decode<span class="token punctuation">(</span>t<span class="token punctuation">,</span> <span class="token string">"UTF8"</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20200303095843242.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200303100155274.png" alt="在这里插入图片描述"><br>获得三个字符串各自的长度</p>
-<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># ragged tensor 长度不一</span>
-r <span class="token operator">=</span> tf<span class="token punctuation">.</span>ragged<span class="token punctuation">.</span>constant<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">11</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">21</span><span class="token punctuation">,</span> <span class="token number">22</span><span class="token punctuation">,</span> <span class="token number">23</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">41</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># index op</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>r<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 左闭右开区间</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>r<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20200303101038427.png" alt="在这里插入图片描述"></p>
-<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># ops on ragged tensor</span>
-r2 <span class="token operator">=</span> tf<span class="token punctuation">.</span>ragged<span class="token punctuation">.</span>constant<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">51</span><span class="token punctuation">,</span> <span class="token number">52</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">71</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 在维度0进行拼接</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>tf<span class="token punctuation">.</span>concat<span class="token punctuation">(</span><span class="token punctuation">[</span>r<span class="token punctuation">,</span> r2<span class="token punctuation">]</span><span class="token punctuation">,</span> axis <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20200303101257700.png" alt="在这里插入图片描述"><br>纵向拼接 向量维度要一致<br><img src="https://img-blog.csdnimg.cn/20200303101415272.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200303101530806.png" alt="在这里插入图片描述"><br>转换为tensor，0值在正常值的后面</p>
-<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># sparse tensor</span>
-<span class="token comment" spellcheck="true"># 正常值index</span>
-s <span class="token operator">=</span> tf<span class="token punctuation">.</span>SparseTensor<span class="token punctuation">(</span>indices <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-                    values <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">.</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">.</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">.</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-                    dense_shape <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>tf<span class="token punctuation">.</span>sparse<span class="token punctuation">.</span>to_dense<span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20200303103119814.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200303103505156.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># sparse tensor</span>
-<span class="token comment" spellcheck="true"># indices 没有排好序</span>
-s5 <span class="token operator">=</span> tf<span class="token punctuation">.</span>SparseTensor<span class="token punctuation">(</span>indices <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-                    values <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">.</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">.</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">.</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-                    dense_shape <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>s5<span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 调用reorder 给indecs 排序</span>
-s6 <span class="token operator">=</span> tf<span class="token punctuation">.</span>sparse<span class="token punctuation">.</span>reorder<span class="token punctuation">(</span>s5<span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>tf<span class="token punctuation">.</span>sparse<span class="token punctuation">.</span>to_dense<span class="token punctuation">(</span>s6<span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
-<p>变量<br><img src="https://img-blog.csdnimg.cn/20200303103831863.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>v.value()变成tensor<br>v.numpy()取出v的值</p>
-<p>重新赋值</p>
-<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># assign value</span>
-v<span class="token punctuation">.</span>assign<span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">*</span>v<span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>v<span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 对0,1位置重新赋值</span>
-v<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>assign<span class="token punctuation">(</span><span class="token number">42</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>v<span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># 给第一行重新赋值</span>
-v<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>assign<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">.</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">.</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">.</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>v<span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20200303104241916.png" alt="在这里插入图片描述"><br>不能用=号赋值<br><img src="https://img-blog.csdnimg.cn/20200303104356527.png" alt="在这里插入图片描述"></p>
+test_data <span class="token operator">=</span> keras<span class="token punctuation">.</span>preprocessing<span class="token punctuation">.</span>sequence<span class="token punctuation">.</span>pad_sequences<span class="token punctuation">(</span>
+    test_data<span class="token punctuation">,</span> <span class="token comment" spellcheck="true"># list of list</span>
+    value <span class="token operator">=</span> word_index<span class="token punctuation">[</span><span class="token string">'&lt;PAD>'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    padding <span class="token operator">=</span> <span class="token string">'post'</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true"># post, pre</span>
+    maxlen <span class="token operator">=</span> max_length<span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>train_data<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200312214003138.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>第一样本运行结果，添加的是PAD对应的值。</p>
+<h2 id="定义模型"><a href="#定义模型" class="headerlink" title="定义模型"></a>定义模型</h2><pre class=" language-python"><code class="language-python">embedding_dim <span class="token operator">=</span> <span class="token number">16</span>
+batch_size <span class="token operator">=</span> <span class="token number">128</span>
+model <span class="token operator">=</span> keras<span class="token punctuation">.</span>models<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span><span class="token punctuation">[</span>
+    <span class="token comment" spellcheck="true"># 1. define matrix: [vocab_size, embedding_dim]</span>
+    <span class="token comment" spellcheck="true"># 2. [1,2,3,4..], max_length * embedding_dim</span>
+    <span class="token comment" spellcheck="true"># 3. batch_size * max_length * embedding_dim</span>
+    keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Embedding<span class="token punctuation">(</span>vocab_size<span class="token punctuation">,</span> embedding_dim<span class="token punctuation">,</span>
+                           input_length <span class="token operator">=</span> max_length<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token comment" spellcheck="true">#合并                           </span>
+    <span class="token comment" spellcheck="true"># batch_size * max_length * embedding_dim </span>
+    <span class="token comment" spellcheck="true">#   -> batch_size * embedding_dim</span>
+    keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>GlobalAveragePooling1D<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">,</span> activation <span class="token operator">=</span> <span class="token string">'relu'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token comment" spellcheck="true"># 二分类使用激活函数sigmoid</span>
+    keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> activation <span class="token operator">=</span> <span class="token string">'sigmoid'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>summary<span class="token punctuation">(</span><span class="token punctuation">)</span>
+model<span class="token punctuation">.</span>compile<span class="token punctuation">(</span>optimizer <span class="token operator">=</span> <span class="token string">'adam'</span><span class="token punctuation">,</span> loss <span class="token operator">=</span> <span class="token string">'binary_crossentropy'</span><span class="token punctuation">,</span>
+              metrics <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'accuracy'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200312214558380.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>160000 = vocab_size * embedding_dim = 100000 * 16<br>1088 = 64* 16+ 64（w*x + b = 64 * embedding_dim + 64）<br>65 = 64 * 1 + 1</p>
+<h2 id="训练模型"><a href="#训练模型" class="headerlink" title="训练模型"></a>训练模型</h2><pre class=" language-python"><code class="language-python">history <span class="token operator">=</span> model<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>train_data<span class="token punctuation">,</span> train_labels<span class="token punctuation">,</span>
+                    epochs <span class="token operator">=</span> <span class="token number">30</span><span class="token punctuation">,</span>
+                    batch_size <span class="token operator">=</span> batch_size<span class="token punctuation">,</span>
+                    validation_split <span class="token operator">=</span> <span class="token number">0.2</span><span class="token punctuation">)</span></code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200312215217963.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="学习曲线"><a href="#学习曲线" class="headerlink" title="学习曲线"></a>学习曲线</h2><pre class=" language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">plot_learning_curves</span><span class="token punctuation">(</span>history<span class="token punctuation">,</span> label<span class="token punctuation">,</span> epochs<span class="token punctuation">,</span> min_value<span class="token punctuation">,</span> max_value<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    data <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    data<span class="token punctuation">[</span>label<span class="token punctuation">]</span> <span class="token operator">=</span> history<span class="token punctuation">.</span>history<span class="token punctuation">[</span>label<span class="token punctuation">]</span>
+    data<span class="token punctuation">[</span><span class="token string">'val_'</span><span class="token operator">+</span>label<span class="token punctuation">]</span> <span class="token operator">=</span> history<span class="token punctuation">.</span>history<span class="token punctuation">[</span><span class="token string">'val_'</span><span class="token operator">+</span>label<span class="token punctuation">]</span>
+    pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">.</span>plot<span class="token punctuation">(</span>figsize<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>grid<span class="token punctuation">(</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>axis<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> epochs<span class="token punctuation">,</span> min_value<span class="token punctuation">,</span> max_value<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+plot_learning_curves<span class="token punctuation">(</span>history<span class="token punctuation">,</span> <span class="token string">'accuracy'</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+plot_learning_curves<span class="token punctuation">(</span>history<span class="token punctuation">,</span> <span class="token string">'loss'</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span></code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200312215258996.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200312215307362.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>训练集的loss一直在下降，而验证集loss下降一定程度后后又上升，说明有过拟合的问题。</p>
+<h2 id="测试数据"><a href="#测试数据" class="headerlink" title="测试数据"></a>测试数据</h2><p><img src="https://img-blog.csdnimg.cn/20200312215510657.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200313150812292.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="序列式问题"><a href="#序列式问题" class="headerlink" title="序列式问题"></a>序列式问题</h2><p><img src="https://img-blog.csdnimg.cn/20200313151007134.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>一对一：普通神经网络。<br>一对多：图片生成描述。<br>多对一：文本分类（文本情感分析）。<br>多对多：encoding - decoding（机器翻译）。<br>实时多对多：视屏解说。</p>
+<h2 id="循环神经网络-1"><a href="#循环神经网络-1" class="headerlink" title="循环神经网络"></a>循环神经网络</h2><p><img src="https://img-blog.csdnimg.cn/20200313151919584.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200313152135576.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200313152312275.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>rnn特点：<br>1.维护一个状态，这个状态可以当前步传给下一步，再传给下一步。<br>2.对于每一个计算，参数是共享的。<br>这两个特点，是的rnn可以处理变长数据，不管序列有多长，每个计算都是两个输入。<br><img src="https://img-blog.csdnimg.cn/20200313152750738.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>在做预测的时候，计算的方法跟训练是类似的，做下一步的时候，需要上一步的输出结果进行输入，还有风险就是，如果开头预测错了，后面也会错。<br><img src="https://img-blog.csdnimg.cn/20200313153048700.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>用rnn做文本分类，输入是一个句子，输出是一个二分类的概率，跟之前不一样的是不用每一步都做合并，只需在最后一步进行输出，来作为mlp的输入，因为我们在rnn维护了一个state（状态），这个状态包含了句子的所有信息，在最后一个状态就有整个句子的信息的，这里连接是双向的，意味着这个rnn是双向的神经网络，多维护一个状态，一个从开始到最后，一个从最后到开始，使得每个词的embedding具有上下文信息。</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -613,7 +621,7 @@ v<span class="token punctuation">[</span><span class="token number">1</span><spa
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wmxnlfd.github.io/2020/03/06/ml-dl-xue-xi-7-tf-basic-api/">https://wmxnlfd.github.io/2020/03/06/ml-dl-xue-xi-7-tf-basic-api/</a>
+                    <a href="https://wmxnlfd.github.io/2020/03/16/ml-dl-xue-xi-19-rnn-embedding-padding-pooling/">https://wmxnlfd.github.io/2020/03/16/ml-dl-xue-xi-19-rnn-embedding-padding-pooling/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -828,7 +836,7 @@ v<span class="token punctuation">[</span><span class="token number">1</span><spa
         repo: 'wmxnlfd.github.io',
         owner: 'wmxnlfd',
         admin: "wmxnlfd",
-        id: '2020-03-06T22-06-57',
+        id: '2020-03-16T21-18-06',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -849,33 +857,31 @@ v<span class="token punctuation">[</span><span class="token number">1</span><spa
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/03/07/ml-dl-xue-xi-8-tf-keras-regression-customized-loss-layers/">
+                <a href="/2020/03/16/ml-dl-xue-xi-19-rnn-embedding-padding-pooling/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="【ML&DL学习】8 tf keras regression customized loss layers">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="【ML&DL学习】19 rnn embedding padding pooling">
                         
-                        <span class="card-title">【ML&DL学习】8 tf keras regression customized loss layers</span>
+                        <span class="card-title">【ML&DL学习】19 rnn embedding padding pooling</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            自定义损失函数之前使用的损失函数
-def customized_mse(y_true, y_pred):
-    return tf.reduce_mean(tf.square(y_pred - y_true))
-
-model = kera
+                            循环神经网络nlp领域并不可少的一个网络Embedding是神经网络应用到nlp领域一个关键的步骤，他可以把词语转换为数字，从而让神经网络可以读取。
+embedding与变长输入处理使用one-hot编码的embedding。在nlp领域e
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-16
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -888,6 +894,7 @@ model = kera
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -914,30 +921,30 @@ model = kera
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/03/04/ml-dl-xue-xi-6-tf-keras-regression-hp-search-sklearn/">
+                <a href="/2020/03/16/ml-dl-xue-xi-18-kaggle-10-monkeys-model-and-resnet50-finetune/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/25.jpg" class="responsive-img" alt="【ML&DL学习】6 tf keras regression hp search sklearn">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="【ML&DL学习】18 kaggle 10 monkeys model and resnet50 finetune">
                         
-                        <span class="card-title">【ML&DL学习】6 tf keras regression hp search sklearn</span>
+                        <span class="card-title">【ML&DL学习】18 kaggle 10 monkeys model and resnet50 finetune</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            超参数搜索搜索策略：
-
-网格搜索
-随机搜索
-遗传算法搜索
-启发式搜索手动搜索 learning rate# learning_rate: [1e-4, 3e-4, 1e-3, 3e-3, 1e-2, 3e-2]
-# W = W + grad
+                            上传下载notebook
+运行第一行
+导入库%matplotlib inline
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import numpy as np
+imp
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-16
                             </span>
                         <span class="publish-author">
                             
