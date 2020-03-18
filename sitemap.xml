@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://wmxnlfd.github.io/2020/03/18/ml-dl-xue-xi-21-rnn-embedding-lstm-generate-text/</loc>
+    
+    <lastmod>2020-03-18T03:42:39.546Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://wmxnlfd.github.io/2020/03/18/ml-dl-xue-xi-20-rnn-embedding-text-generation/</loc>
+    
+    <lastmod>2020-03-18T03:42:11.138Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://wmxnlfd.github.io/2020/03/16/ml-dl-xue-xi-19-rnn-embedding-padding-pooling/</loc>
     
     <lastmod>2020-03-16T13:20:07.034Z</lastmod>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wmxnlfd.github.io/"/>
-  <updated>2020-03-16T13:20:07.034Z</updated>
+  <updated>2020-03-18T03:42:39.546Z</updated>
   <id>https://wmxnlfd.github.io/</id>
   
   <author>
@@ -15,6 +15,68 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【ML&amp;DL学习】21 rnn embedding lstm generate text</title>
+    <link href="https://wmxnlfd.github.io/2020/03/18/ml-dl-xue-xi-21-rnn-embedding-lstm-generate-text/"/>
+    <id>https://wmxnlfd.github.io/2020/03/18/ml-dl-xue-xi-21-rnn-embedding-lstm-generate-text/</id>
+    <published>2020-03-18T03:40:56.000Z</published>
+    <updated>2020-03-18T03:42:39.546Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;LSTM-长短期记忆网络&quot;&gt;&lt;a href=&quot;#LSTM-长短期记忆网络&quot; class=&quot;headerlink&quot; title=&quot;LSTM 长短期记忆网络&quot;&gt;&lt;/a&gt;LSTM 长短期记忆网络&lt;/h2&gt;&lt;p&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+    
+      <category term="机器学习和深度学习" scheme="https://wmxnlfd.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="机器学习" scheme="https://wmxnlfd.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="深度学习" scheme="https://wmxnlfd.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="TensorFlow" scheme="https://wmxnlfd.github.io/tags/TensorFlow/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【ML&amp;DL学习】20 rnn embedding text generation</title>
+    <link href="https://wmxnlfd.github.io/2020/03/18/ml-dl-xue-xi-20-rnn-embedding-text-generation/"/>
+    <id>https://wmxnlfd.github.io/2020/03/18/ml-dl-xue-xi-20-rnn-embedding-text-generation/</id>
+    <published>2020-03-18T03:40:39.000Z</published>
+    <updated>2020-03-18T03:42:11.138Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;模型建立&quot;&gt;&lt;a href=&quot;#模型建立&quot; class=&quot;headerlink&quot; title=&quot;模型建立&quot;&gt;&lt;/a&gt;模型建立&lt;/h2&gt;&lt;pre class=&quot; language-python&quot;&gt;&lt;code
+        
+      
+    
+    </summary>
+    
+    
+      <category term="机器学习和深度学习" scheme="https://wmxnlfd.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="机器学习" scheme="https://wmxnlfd.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="深度学习" scheme="https://wmxnlfd.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="TensorFlow" scheme="https://wmxnlfd.github.io/tags/TensorFlow/"/>
+    
+  </entry>
   
   <entry>
     <title>【ML&amp;DL学习】19 rnn embedding padding pooling</title>
@@ -572,68 +634,6 @@
       <category term="深度学习" scheme="https://wmxnlfd.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="TensorFlow" scheme="https://wmxnlfd.github.io/tags/TensorFlow/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【ML&amp;DL学习】4 tf keras classification model dnn bn selu dropout</title>
-    <link href="https://wmxnlfd.github.io/2020/03/03/ml-dl-xue-xi-4-tf-keras-classification-model-dnn-bn-selu-dropout/"/>
-    <id>https://wmxnlfd.github.io/2020/03/03/ml-dl-xue-xi-4-tf-keras-classification-model-dnn-bn-selu-dropout/</id>
-    <published>2020-03-03T15:34:50.000Z</published>
-    <updated>2020-03-04T12:51:20.469Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;回忆一些神经网络的知识&quot;&gt;&lt;a href=&quot;#回忆一些神经网络的知识&quot; class=&quot;headerlink&quot; title=&quot;回忆一些神经网络的知识&quot;&gt;&lt;/a&gt;回忆一些神经网络的知识&lt;/h2&gt;&lt;p&gt;&lt;img
-        
-      
-    
-    </summary>
-    
-    
-      <category term="机器学习和深度学习" scheme="https://wmxnlfd.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="机器学习" scheme="https://wmxnlfd.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="深度学习" scheme="https://wmxnlfd.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="TensorFlow" scheme="https://wmxnlfd.github.io/tags/TensorFlow/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>从零开始的刷LeetCode生活 第47期 501-515</title>
-    <link href="https://wmxnlfd.github.io/2020/03/02/cong-ling-kai-shi-de-shua-leetcode-sheng-huo-di-47-qi-501-515/"/>
-    <id>https://wmxnlfd.github.io/2020/03/02/cong-ling-kai-shi-de-shua-leetcode-sheng-huo-di-47-qi-501-515/</id>
-    <published>2020-03-02T15:12:37.000Z</published>
-    <updated>2020-03-02T15:13:57.719Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;img
-        
-      
-    
-    </summary>
-    
-    
-      <category term="数据结构和算法" scheme="https://wmxnlfd.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="LeetCode" scheme="https://wmxnlfd.github.io/tags/LeetCode/"/>
-    
-      <category term="C++" scheme="https://wmxnlfd.github.io/tags/C/"/>
-    
-      <category term="笔试刷题" scheme="https://wmxnlfd.github.io/tags/%E7%AC%94%E8%AF%95%E5%88%B7%E9%A2%98/"/>
     
   </entry>
   
