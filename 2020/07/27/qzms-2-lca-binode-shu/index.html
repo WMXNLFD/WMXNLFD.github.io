@@ -4,11 +4,14 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="【ML&amp;DL学习】12 tf tfrecord basic api generate tfrecord, 追梦者">
-    <meta name="description" content="先把dataset转出tfrecord格式，再用tf.data进行读取，然后模型进行训练
-# tfrecord 文件格式
-# -&gt; tf.train.Example
-#    -&gt; tf.train.Features -&gt; {&#34;key&#34;: ">
+    <meta name="keywords" content="【QZMS】2 LCA BiNode 树, 追梦者">
+    <meta name="description" content="
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +19,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>【ML&amp;DL学习】12 tf tfrecord basic api generate tfrecord | WMXNLFD</title>
+    <title>【QZMS】2 LCA BiNode 树 | WMXNLFD</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -308,13 +311,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/27.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        【ML&amp;DL学习】12 tf tfrecord basic api generate tfrecord
+                        【QZMS】2 LCA BiNode 树
                     </div>
                 </div>
             </div>
@@ -426,16 +429,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
-                                <span class="chip bg-color">机器学习</span>
+                            <a href="/tags/LeetCode/">
+                                <span class="chip bg-color">LeetCode</span>
                             </a>
                         
-                            <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
-                                <span class="chip bg-color">深度学习</span>
+                            <a href="/tags/C/">
+                                <span class="chip bg-color">C++</span>
                             </a>
                         
-                            <a href="/tags/TensorFlow/">
-                                <span class="chip bg-color">TensorFlow</span>
+                            <a href="/tags/%E7%AC%94%E8%AF%95%E5%88%B7%E9%A2%98/">
+                                <span class="chip bg-color">笔试刷题</span>
                             </a>
                         
                     </div>
@@ -446,8 +449,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                机器学习和深度学习
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" class="post-category">
+                                数据结构和算法
                             </a>
                         
                     </div>
@@ -458,14 +461,14 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-09
+                    2020-07-27
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        449
+                        411
                     </div>
                     
 
@@ -488,110 +491,130 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>先把dataset转出tfrecord格式，再用tf.data进行读取，然后模型进行训练</p>
-<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># tfrecord 文件格式</span>
-<span class="token comment" spellcheck="true"># -> tf.train.Example</span>
-<span class="token comment" spellcheck="true">#    -> tf.train.Features -> {"key": tf.train.Feature}</span>
-<span class="token comment" spellcheck="true">#       -> tf.train.Feature -> tf.train.ByteList/FloatList/Int64List</span>
-
-favorite_books <span class="token operator">=</span> <span class="token punctuation">[</span>name<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>
-                  <span class="token keyword">for</span> name <span class="token keyword">in</span> <span class="token punctuation">[</span><span class="token string">"machine learning"</span><span class="token punctuation">,</span> <span class="token string">"cc150"</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
-favorite_books_bytelist <span class="token operator">=</span> tf<span class="token punctuation">.</span>train<span class="token punctuation">.</span>BytesList<span class="token punctuation">(</span>value <span class="token operator">=</span> favorite_books<span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>favorite_books_bytelist<span class="token punctuation">)</span>
-
-hours_floatlist <span class="token operator">=</span> tf<span class="token punctuation">.</span>train<span class="token punctuation">.</span>FloatList<span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">15.5</span><span class="token punctuation">,</span> <span class="token number">9.5</span><span class="token punctuation">,</span> <span class="token number">7.0</span><span class="token punctuation">,</span> <span class="token number">8.0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>hours_floatlist<span class="token punctuation">)</span>
-
-age_int64list <span class="token operator">=</span> tf<span class="token punctuation">.</span>train<span class="token punctuation">.</span>Int64List<span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">42</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>age_int64list<span class="token punctuation">)</span>
-
-features <span class="token operator">=</span> tf<span class="token punctuation">.</span>train<span class="token punctuation">.</span>Features<span class="token punctuation">(</span>
-    feature <span class="token operator">=</span> <span class="token punctuation">{</span>
-        <span class="token string">"favorite_books"</span><span class="token punctuation">:</span> tf<span class="token punctuation">.</span>train<span class="token punctuation">.</span>Feature<span class="token punctuation">(</span>
-            bytes_list <span class="token operator">=</span> favorite_books_bytelist<span class="token punctuation">)</span><span class="token punctuation">,</span>
-        <span class="token string">"hours"</span><span class="token punctuation">:</span> tf<span class="token punctuation">.</span>train<span class="token punctuation">.</span>Feature<span class="token punctuation">(</span>
-            float_list <span class="token operator">=</span> hours_floatlist<span class="token punctuation">)</span><span class="token punctuation">,</span>
-        <span class="token string">"age"</span><span class="token punctuation">:</span> tf<span class="token punctuation">.</span>train<span class="token punctuation">.</span>Feature<span class="token punctuation">(</span>int64_list <span class="token operator">=</span> age_int64list<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                <p><img src="https://img-blog.csdnimg.cn/20200727215543772.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */</span>
+class Solution <span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    TreeNode<span class="token operator">*</span> <span class="token function">lowestCommonAncestor</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">,</span> TreeNode<span class="token operator">*</span> p<span class="token punctuation">,</span> TreeNode<span class="token operator">*</span> q<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>root <span class="token operator">==</span> <span class="token constant">NULL</span> <span class="token operator">||</span> root <span class="token operator">==</span> p <span class="token operator">||</span> root <span class="token operator">==</span> q<span class="token punctuation">)</span> <span class="token keyword">return</span> root<span class="token punctuation">;</span>
+        TreeNode<span class="token operator">*</span> left <span class="token operator">=</span> <span class="token function">lowestCommonAncestor</span><span class="token punctuation">(</span>root<span class="token operator">-></span>left<span class="token punctuation">,</span> p<span class="token punctuation">,</span> q<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        TreeNode<span class="token operator">*</span> right <span class="token operator">=</span> <span class="token function">lowestCommonAncestor</span><span class="token punctuation">(</span>root<span class="token operator">-></span>right<span class="token punctuation">,</span> p<span class="token punctuation">,</span> q<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>left <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token keyword">return</span> right<span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>right <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token keyword">return</span> left<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> root<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>features<span class="token punctuation">)</span></code></pre>
-<p><img src="https://img-blog.csdnimg.cn/2020030413491168.png" alt="在这里插入图片描述"><br>example 与 序列化（压缩减小size）<br><img src="https://img-blog.csdnimg.cn/20200304135027614.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>保存tfrecord文件<br><img src="https://img-blog.csdnimg.cn/20200304135313527.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200304135349278.png" alt="在这里插入图片描述"><br>读取<br><img src="https://img-blog.csdnimg.cn/20200304135433335.png" alt="在这里插入图片描述"><br>反序列化<br><img src="https://img-blog.csdnimg.cn/20200304135545521.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>tfrecord压缩<br><img src="https://img-blog.csdnimg.cn/20200304135855777.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/2020030413584690.png" alt="在这里插入图片描述"><br>压缩后读取tfrecord<br><img src="https://img-blog.csdnimg.cn/2020030414000676.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<h2 id="tfrecord-生成-读取-使用"><a href="#tfrecord-生成-读取-使用" class="headerlink" title="tfrecord 生成 读取 使用"></a>tfrecord 生成 读取 使用</h2><p><img src="https://img-blog.csdnimg.cn/20200304140427611.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<pre class=" language-python"><code class="language-python">source_dir <span class="token operator">=</span> <span class="token string">"./generate_csv/"</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200727220831882.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */</span>
+class Solution <span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    TreeNode<span class="token operator">*</span> <span class="token function">lowestCommonAncestor</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">,</span> TreeNode<span class="token operator">*</span> p<span class="token punctuation">,</span> TreeNode<span class="token operator">*</span> q<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>root <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>root<span class="token operator">-></span>val <span class="token operator">&lt;</span> p<span class="token operator">-></span>val <span class="token operator">&amp;&amp;</span> root<span class="token operator">-></span>val <span class="token operator">&lt;</span> q<span class="token operator">-></span>val<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                root <span class="token operator">=</span> root<span class="token operator">-></span>right<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> 
+            <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>root<span class="token operator">-></span>val <span class="token operator">></span> p<span class="token operator">-></span>val <span class="token operator">&amp;&amp;</span> root<span class="token operator">-></span>val <span class="token operator">></span> q<span class="token operator">-></span>val<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                root <span class="token operator">=</span> root<span class="token operator">-></span>left<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>   
+            <span class="token keyword">else</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> root<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200727222236220.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */</span>
+class Solution <span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    TreeNode<span class="token operator">*</span> head <span class="token operator">=</span> new <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token operator">*</span>cur <span class="token operator">=</span> head<span class="token punctuation">;</span>
 
-<span class="token keyword">def</span> <span class="token function">get_filenames_by_prefix</span><span class="token punctuation">(</span>source_dir<span class="token punctuation">,</span> prefix_name<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    all_files <span class="token operator">=</span> os<span class="token punctuation">.</span>listdir<span class="token punctuation">(</span>source_dir<span class="token punctuation">)</span>
-    results <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-    <span class="token keyword">for</span> filename <span class="token keyword">in</span> all_files<span class="token punctuation">:</span>
-        <span class="token keyword">if</span> filename<span class="token punctuation">.</span>startswith<span class="token punctuation">(</span>prefix_name<span class="token punctuation">)</span><span class="token punctuation">:</span>
-            results<span class="token punctuation">.</span>append<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>source_dir<span class="token punctuation">,</span> filename<span class="token punctuation">)</span><span class="token punctuation">)</span>
-    <span class="token keyword">return</span> results
+    <span class="token keyword">void</span> <span class="token function">inOrder</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> node<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>node <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token function">inOrder</span><span class="token punctuation">(</span>node<span class="token operator">-></span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        node<span class="token operator">-></span>left <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+        cur<span class="token operator">-></span>right <span class="token operator">=</span> node<span class="token punctuation">;</span>
+        cur <span class="token operator">=</span> node<span class="token punctuation">;</span>
+        <span class="token function">inOrder</span><span class="token punctuation">(</span>node<span class="token operator">-></span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-train_filenames <span class="token operator">=</span> get_filenames_by_prefix<span class="token punctuation">(</span>source_dir<span class="token punctuation">,</span> <span class="token string">"train"</span><span class="token punctuation">)</span>
-valid_filenames <span class="token operator">=</span> get_filenames_by_prefix<span class="token punctuation">(</span>source_dir<span class="token punctuation">,</span> <span class="token string">"valid"</span><span class="token punctuation">)</span>
-test_filenames <span class="token operator">=</span> get_filenames_by_prefix<span class="token punctuation">(</span>source_dir<span class="token punctuation">,</span> <span class="token string">"test"</span><span class="token punctuation">)</span>
+    TreeNode<span class="token operator">*</span> <span class="token function">convertBiNode</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">inOrder</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> head<span class="token operator">-></span>right<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200727225541795.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */</span>
+class Solution <span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    <span class="token keyword">int</span> res <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> <span class="token function">pathSum</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">,</span> <span class="token keyword">int</span> sum<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>root <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token function">dfs</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> sum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">pathSum</span><span class="token punctuation">(</span>root<span class="token operator">-></span>left<span class="token punctuation">,</span> sum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">pathSum</span><span class="token punctuation">(</span>root<span class="token operator">-></span>right<span class="token punctuation">,</span> sum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> res<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-<span class="token keyword">import</span> pprint
-pprint<span class="token punctuation">.</span>pprint<span class="token punctuation">(</span>train_filenames<span class="token punctuation">)</span>
-pprint<span class="token punctuation">.</span>pprint<span class="token punctuation">(</span>valid_filenames<span class="token punctuation">)</span>
-pprint<span class="token punctuation">.</span>pprint<span class="token punctuation">(</span>test_filenames<span class="token punctuation">)</span></code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20200304141917804.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>读取csv装成dataset<br><img src="https://img-blog.csdnimg.cn/20200304142053722.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>读取dataset进行遍历，把取到的数据写到tfrecord文件里去<br><img src="https://img-blog.csdnimg.cn/20200304142516263.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200304143801129.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200304144428153.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200304144521439.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>读取tfrecord</p>
-<pre class=" language-python"><code class="language-python">expected_features <span class="token operator">=</span> <span class="token punctuation">{</span>
-    <span class="token string">"input_features"</span><span class="token punctuation">:</span> tf<span class="token punctuation">.</span>io<span class="token punctuation">.</span>FixedLenFeature<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span>tf<span class="token punctuation">.</span>float32<span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token string">"label"</span><span class="token punctuation">:</span> tf<span class="token punctuation">.</span>io<span class="token punctuation">.</span>FixedLenFeature<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span>tf<span class="token punctuation">.</span>float32<span class="token punctuation">)</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">def</span> <span class="token function">parse_example</span><span class="token punctuation">(</span>serialized_example<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    example <span class="token operator">=</span> tf<span class="token punctuation">.</span>io<span class="token punctuation">.</span>parse_single_example<span class="token punctuation">(</span>serialized_example<span class="token punctuation">,</span>
-                                         expected_features<span class="token punctuation">)</span>
-    <span class="token keyword">return</span> example<span class="token punctuation">[</span><span class="token string">"input_features"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> example<span class="token punctuation">[</span><span class="token string">"label"</span><span class="token punctuation">]</span>
-
-<span class="token keyword">def</span> <span class="token function">tfrecords_reader_dataset</span><span class="token punctuation">(</span>filenames<span class="token punctuation">,</span> n_readers<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">,</span>
-                             batch_size<span class="token operator">=</span><span class="token number">32</span><span class="token punctuation">,</span> n_parse_threads<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">,</span>
-                             shuffle_buffer_size<span class="token operator">=</span><span class="token number">10000</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    dataset <span class="token operator">=</span> tf<span class="token punctuation">.</span>data<span class="token punctuation">.</span>Dataset<span class="token punctuation">.</span>list_files<span class="token punctuation">(</span>filenames<span class="token punctuation">)</span>
-    dataset <span class="token operator">=</span> dataset<span class="token punctuation">.</span>repeat<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    dataset <span class="token operator">=</span> dataset<span class="token punctuation">.</span>interleave<span class="token punctuation">(</span>
-        <span class="token keyword">lambda</span> filename<span class="token punctuation">:</span> tf<span class="token punctuation">.</span>data<span class="token punctuation">.</span>TFRecordDataset<span class="token punctuation">(</span>
-            filename<span class="token punctuation">,</span> compression_type <span class="token operator">=</span> <span class="token string">"GZIP"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-        cycle_length <span class="token operator">=</span> n_readers
-    <span class="token punctuation">)</span>
-    dataset<span class="token punctuation">.</span>shuffle<span class="token punctuation">(</span>shuffle_buffer_size<span class="token punctuation">)</span>
-    dataset <span class="token operator">=</span> dataset<span class="token punctuation">.</span>map<span class="token punctuation">(</span>parse_example<span class="token punctuation">,</span>
-                          num_parallel_calls<span class="token operator">=</span>n_parse_threads<span class="token punctuation">)</span>
-    dataset <span class="token operator">=</span> dataset<span class="token punctuation">.</span>batch<span class="token punctuation">(</span>batch_size<span class="token punctuation">)</span>
-    <span class="token keyword">return</span> dataset
-
-tfrecords_train <span class="token operator">=</span> tfrecords_reader_dataset<span class="token punctuation">(</span>train_tfrecord_filenames<span class="token punctuation">,</span>
-                                           batch_size <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">)</span>
-<span class="token keyword">for</span> x_batch<span class="token punctuation">,</span> y_batch <span class="token keyword">in</span> tfrecords_train<span class="token punctuation">.</span>take<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span>x_batch<span class="token punctuation">)</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span>y_batch<span class="token punctuation">)</span></code></pre>
-<p><img src="https://img-blog.csdnimg.cn/2020030414480563.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>生成训练中使用的数据集</p>
-<pre class=" language-python"><code class="language-python">batch_size <span class="token operator">=</span> <span class="token number">32</span>
-tfrecords_train_set <span class="token operator">=</span> tfrecords_reader_dataset<span class="token punctuation">(</span>
-    train_tfrecord_filenames<span class="token punctuation">,</span> batch_size <span class="token operator">=</span> batch_size<span class="token punctuation">)</span>
-tfrecords_valid_set <span class="token operator">=</span> tfrecords_reader_dataset<span class="token punctuation">(</span>
-    valid_tfrecord_filenames<span class="token punctuation">,</span> batch_size <span class="token operator">=</span> batch_size<span class="token punctuation">)</span>
-tfrecords_test_set <span class="token operator">=</span> tfrecords_reader_dataset<span class="token punctuation">(</span>
-    test_tfrecord_fielnames<span class="token punctuation">,</span> batch_size <span class="token operator">=</span> batch_size<span class="token punctuation">)</span></code></pre>
-<p>训练</p>
-<pre class=" language-python"><code class="language-python">model <span class="token operator">=</span> keras<span class="token punctuation">.</span>models<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span><span class="token punctuation">[</span>
-    keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">'relu'</span><span class="token punctuation">,</span>
-                       input_shape<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-<span class="token punctuation">]</span><span class="token punctuation">)</span>
-model<span class="token punctuation">.</span>compile<span class="token punctuation">(</span>loss<span class="token operator">=</span><span class="token string">"mean_squared_error"</span><span class="token punctuation">,</span> optimizer<span class="token operator">=</span><span class="token string">"sgd"</span><span class="token punctuation">)</span>
-callbacks <span class="token operator">=</span> <span class="token punctuation">[</span>keras<span class="token punctuation">.</span>callbacks<span class="token punctuation">.</span>EarlyStopping<span class="token punctuation">(</span>
-    patience<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">,</span> min_delta<span class="token operator">=</span><span class="token number">1e</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
-
-history <span class="token operator">=</span> model<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>tfrecords_train_set<span class="token punctuation">,</span>
-                    validation_data <span class="token operator">=</span> tfrecords_valid_set<span class="token punctuation">,</span>
-                    steps_per_epoch <span class="token operator">=</span> <span class="token number">11160</span> <span class="token operator">//</span> batch_size<span class="token punctuation">,</span>
-                    validation_steps <span class="token operator">=</span> <span class="token number">3870</span> <span class="token operator">//</span> batch_size<span class="token punctuation">,</span>
-                    epochs <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">,</span>
-                    callbacks <span class="token operator">=</span> callbacks<span class="token punctuation">)</span></code></pre>
-<p><img src="https://img-blog.csdnimg.cn/20200304144940529.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200304145051618.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+    <span class="token keyword">void</span> <span class="token function">dfs</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">,</span> <span class="token keyword">int</span> sum<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>root <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>sum <span class="token operator">-</span> root<span class="token operator">-></span>val <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> res <span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token function">dfs</span><span class="token punctuation">(</span>root<span class="token operator">-></span>left<span class="token punctuation">,</span> sum <span class="token operator">-</span> root<span class="token operator">-></span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">dfs</span><span class="token punctuation">(</span>root<span class="token operator">-></span>right<span class="token punctuation">,</span> sum <span class="token operator">-</span> root<span class="token operator">-></span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20200727230856911.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNTQ5MjU0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<pre class=" language-c"><code class="language-c"><span class="token comment" spellcheck="true">/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */</span>
+class Solution <span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    bool <span class="token function">checkSubTree</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> t1<span class="token punctuation">,</span> TreeNode<span class="token operator">*</span> t2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>t2 <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token keyword">return</span> true<span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>t2 <span class="token operator">!=</span> <span class="token constant">NULL</span> <span class="token operator">&amp;&amp;</span> t1 <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token keyword">return</span> false<span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>t1<span class="token operator">-></span>val <span class="token operator">!=</span> t2<span class="token operator">-></span>val<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token function">checkSubTree</span><span class="token punctuation">(</span>t1<span class="token operator">-></span>left<span class="token punctuation">,</span> t2<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token function">checkSubTree</span><span class="token punctuation">(</span>t1<span class="token operator">-></span>right<span class="token punctuation">,</span> t2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token function">checkSubTree</span><span class="token punctuation">(</span>t1<span class="token operator">-></span>left<span class="token punctuation">,</span> t2<span class="token operator">-></span>left<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token function">checkSubTree</span><span class="token punctuation">(</span>t1<span class="token operator">-></span>right<span class="token punctuation">,</span> t2<span class="token operator">-></span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -635,7 +658,7 @@ history <span class="token operator">=</span> model<span class="token punctuatio
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://wmxnlfd.github.io/2020/03/09/ml-dl-xue-xi-12-tf-tfrecord-basic-api-generate-tfrecord/">https://wmxnlfd.github.io/2020/03/09/ml-dl-xue-xi-12-tf-tfrecord-basic-api-generate-tfrecord/</a>
+                    <a href="https://wmxnlfd.github.io/2020/07/27/qzms-2-lca-binode-shu/">https://wmxnlfd.github.io/2020/07/27/qzms-2-lca-binode-shu/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -673,16 +696,16 @@ history <span class="token operator">=</span> model<span class="token punctuatio
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
-                                    <span class="chip bg-color">机器学习</span>
+                                <a href="/tags/LeetCode/">
+                                    <span class="chip bg-color">LeetCode</span>
                                 </a>
                             
-                                <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
-                                    <span class="chip bg-color">深度学习</span>
+                                <a href="/tags/C/">
+                                    <span class="chip bg-color">C++</span>
                                 </a>
                             
-                                <a href="/tags/TensorFlow/">
-                                    <span class="chip bg-color">TensorFlow</span>
+                                <a href="/tags/%E7%AC%94%E8%AF%95%E5%88%B7%E9%A2%98/">
+                                    <span class="chip bg-color">笔试刷题</span>
                                 </a>
                             
                         </div>
@@ -850,7 +873,7 @@ history <span class="token operator">=</span> model<span class="token punctuatio
         repo: 'wmxnlfd.github.io',
         owner: 'wmxnlfd',
         admin: "wmxnlfd",
-        id: '2020-03-09T22-22-30',
+        id: '2020-07-27T23-33-44',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -871,35 +894,36 @@ history <span class="token operator">=</span> model<span class="token punctuatio
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/03/10/cong-ling-kai-shi-de-shua-leetcode-sheng-huo-di-49-qi-521-537/">
+                <a href="/2020/07/27/qzms-2-lca-binode-shu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="从零开始的刷LeetCode生活 第49期 521-537">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="【QZMS】2 LCA BiNode 树">
                         
-                        <span class="card-title">从零开始的刷LeetCode生活 第49期 521-537</span>
+                        <span class="card-title">【QZMS】2 LCA BiNode 树</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
                             
-class Solution {
-public:
-    int findLUSlength(string a, string b) {
-        if(a == b)
-            return -1;
-        
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-10
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-27
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -912,6 +936,7 @@ public:
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -938,35 +963,39 @@ public:
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/03/09/ml-dl-xue-xi-11-tf-data-basic-api-generate-csv/">
+                <a href="/2020/07/26/qzms-lc-di-31-chang-shuang-zhou-sai/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="【ML&DL学习】11 tf data basic api generate csv">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="【QZMS】LC第31场双周赛">
                         
-                        <span class="card-title">【ML&DL学习】11 tf data basic api generate csv</span>
+                        <span class="card-title">【QZMS】LC第31场双周赛</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            tf.data API使用tf.data 的作用是处理数据，读取数据，对数据做一些预处理，然后把数据塞给程序进行训练。
+                            
+class Solution {
+public:
 
-Dataset 基础API使用
-Dataset读取csv文件（csv文件，用逗号分隔，按行存储的文件）
-Dataset
+    int count(int x) {
+        if(x &lt; 0) {
+            return 0;
+        }
+        return 
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-09
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-26
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                    机器学习和深度学习
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" class="post-category">
+                                    数据结构和算法
                                 </a>
                             
                             
@@ -976,16 +1005,16 @@ Dataset
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
-                        <span class="chip bg-color">机器学习</span>
+                    <a href="/tags/LeetCode/">
+                        <span class="chip bg-color">LeetCode</span>
                     </a>
                     
-                    <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
-                        <span class="chip bg-color">深度学习</span>
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C++</span>
                     </a>
                     
-                    <a href="/tags/TensorFlow/">
-                        <span class="chip bg-color">TensorFlow</span>
+                    <a href="/tags/%E7%AC%94%E8%AF%95%E5%88%B7%E9%A2%98/">
+                        <span class="chip bg-color">笔试刷题</span>
                     </a>
                     
                 </div>
